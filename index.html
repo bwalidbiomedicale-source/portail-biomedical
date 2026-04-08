@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portail Biomédical — CHP Tata</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#060b09;--bg2:#0c1310;--bg3:#111a16;--bg4:#162019;--border:#1b2b23;--text:#dfe8e2;--text2:#9ca8a0;--text3:#5e6b62;--green:#22c55e;--green2:#059669;--green3:#22c55e18;--red:#ef4444;--red2:#ef444420;--amber:#f59e0b;--amber2:#f59e0b20;--blue:#60a5fa;--blue2:#3b82f620;--purple:#a78bfa;--purple2:#8b5cf620}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::selection{background:var(--green);color:var(--bg)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px #22c55e20}50%{box-shadow:0 0 40px #22c55e40}}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 30%,#0a1f14,var(--bg))}
+.login-box{width:420px;max-width:92vw;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:40px 36px;text-align:center;animation:fadeUp .6s ease}
+.logo-big{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--green),var(--green2));display:inline-flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:var(--bg);margin-bottom:20px;animation:glow 3s ease infinite}
+.login-box h1{font-size:22px;font-weight:800;margin-bottom:4px}
+.login-box .sub{color:var(--text3);font-size:13px;margin-bottom:28px}
+.lf{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;outline:none;margin-bottom:12px}.lf:focus{border-color:var(--green)}
+.lb{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--green),var(--green2));color:var(--bg);font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;margin-top:8px;box-shadow:0 4px 20px #22c55e30}.lb:hover{transform:translateY(-1px)}
+.lb2{width:100%;padding:14px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:8px}.lb2:hover{border-color:var(--green);color:var(--green)}
+.lerr{color:var(--red);font-size:13px;margin-top:10px;font-weight:600}
+.lhint{color:var(--text3);font-size:11px;margin-top:16px;line-height:1.6}.lhint b{color:var(--text2)}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:10px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-ic{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--bg)}
+.hdr-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nav{display:flex;gap:3px;flex-wrap:wrap}
+.nb{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;background:transparent;color:var(--text3);transition:all .2s}.nb:hover{color:var(--text2);background:var(--bg3)}.nb.ac{background:var(--green);color:var(--bg)}
+.ui{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-size:11px;color:var(--text2)}.ui .rl{color:var(--green);font-weight:700}
+.lo{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text3);font-size:11px;cursor:pointer;font-family:inherit;font-weight:600;margin-left:6px}.lo:hover{border-color:var(--red);color:var(--red)}
+.mn{max-width:920px;margin:0 auto;padding:28px 20px 60px}
+.ph{text-align:center;margin-bottom:28px}.ph h2{font-size:26px;font-weight:800;margin-top:14px}.ph p{color:var(--text3);font-size:14px;margin-top:4px}
+.pb{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700}
+.pb-g{background:var(--green3);color:var(--green)}.pb-r{background:var(--red2);color:var(--red)}.pb-b{background:var(--blue2);color:var(--blue)}.pb-p{background:var(--purple2);color:var(--purple)}
+.cd{background:var(--bg3);border-radius:16px;border:1px solid var(--border);padding:24px;margin-bottom:20px}
+.st{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.sn{width:22px;height:22px;border-radius:6px;background:var(--green3);color:var(--green);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.ob{background:var(--blue2);color:var(--blue);padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
+.sb{padding:14px 6px;border-radius:12px;border:2px solid transparent;background:var(--bg2);cursor:pointer;text-align:center;transition:all .2s;color:var(--text3)}.sb:hover{border-color:var(--green3)}.sb.ac{border-color:var(--green);background:var(--green3);color:var(--green)}
+.si{font-size:24px;margin-bottom:4px}.sl{font-size:11px;font-weight:600}.sc{font-size:10px;color:var(--green2);margin-top:2px;opacity:.6}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.fg{grid-template-columns:1fr}.hdr{flex-direction:column}.hdr-r{flex-direction:column;width:100%}.nav{justify-content:center}}
+.fi label{font-size:12px;color:var(--text3);margin-bottom:5px;display:block;font-weight:600}
+.fi input,.fi select,.fi textarea{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;outline:none}.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--green)}
+.fi textarea{min-height:80px;resize:vertical}.ff{grid-column:1/-1}
+.ug{display:flex;gap:8px;flex-wrap:wrap}
+.ub{padding:9px 22px;border-radius:20px;border:2px solid transparent;background:var(--bg2);color:var(--text3);cursor:pointer;font-weight:700;font-size:13px;font-family:inherit}
+.ub.ag{border-color:var(--green);background:var(--green3);color:var(--green)}.ub.aa{border-color:var(--amber);background:var(--amber2);color:var(--amber)}.ub.ar{border-color:var(--red);background:var(--red2);color:var(--red)}
+.sbm{width:100%;padding:15px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--green),var(--green2));color:var(--bg);font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;margin-top:10px;box-shadow:0 4px 20px #22c55e30}.sbm:hover{transform:translateY(-1px)}
+.suc{background:var(--green3);border:1px solid #22c55e40;border-radius:12px;padding:16px;text-align:center;color:var(--green);font-weight:700;margin-bottom:20px}
+.sw{position:relative}
+.sin{width:100%;padding:13px 14px 13px 40px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;outline:none}.sin:focus{border-color:var(--green)}
+.sic{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--text3);pointer-events:none}
+.scl{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px}
+.dd{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:50;background:var(--bg3);border:1px solid var(--green);border-radius:12px;max-height:300px;overflow-y:auto;box-shadow:0 12px 50px #00000080}
+.di{padding:12px 16px;cursor:pointer;border-bottom:1px solid var(--border)}.di:last-child{border-bottom:none}.di:hover{background:var(--green3)}
+.dn{font-weight:700;font-size:13px;color:var(--text)}.dm{font-size:11px;color:var(--text3);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}.dv{color:var(--green)}
+.de{padding:24px;text-align:center;color:var(--text3);font-size:13px}
+.es{margin-top:14px;background:#22c55e08;border:1px solid #22c55e30;border-radius:12px;padding:16px}
+.es .et{font-size:12px;color:var(--green);font-weight:800;margin-bottom:10px}
+.es .eg{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+.es .ek{color:var(--text3)}.es .ev{color:var(--text);font-weight:500}.es .eh{color:var(--green);font-weight:800}
+.stg{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
+.stc{background:var(--bg2);border-radius:12px;padding:16px 10px;text-align:center;cursor:pointer;border:2px solid transparent}.stc:hover{border-color:var(--green3)}.stc.ac{border-color:var(--green)}
+.stn{font-size:28px;font-weight:800;color:var(--green)}.stl{font-size:11px;color:var(--text3);margin-top:3px;font-weight:600}
+.fb{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+.fs{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:13px;font-family:inherit;outline:none}
+.tw{overflow-x:auto;border-radius:12px}
+table{width:100%;border-collapse:separate;border-spacing:0 5px}
+th{text-align:left;padding:8px 12px;font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase}
+td{padding:12px;font-size:13px;background:var(--bg2);color:var(--text2)}tr:hover td{background:var(--bg4)}
+td:first-child{border-radius:10px 0 0 10px}td:last-child{border-radius:0 10px 10px 0}
+.ab{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.ab button{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer}
+.ab button:hover{border-color:var(--green);color:var(--green);background:var(--green3)}.ab .pr{background:var(--green3);color:var(--green);border-color:var(--green)}
+.etw{overflow-x:auto;max-height:500px;overflow-y:auto;border-radius:12px;border:1px solid var(--border)}
+.etb{width:100%;border-collapse:collapse}
+.etb th{position:sticky;top:0;background:var(--bg3);padding:10px 12px;font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);text-align:left;z-index:5}
+.etb td{padding:9px 12px;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border)}.etb tr:hover td{background:var(--bg4)}
+.svt{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;background:var(--green3);color:var(--green)}
+.mo{position:fixed;inset:0;background:#000000bb;z-index:200;display:flex;align-items:center;justify-content:center}
+.mb{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:32px;width:560px;max-width:92vw;max-height:90vh;overflow-y:auto;animation:fadeUp .3s ease}.mb h3{font-size:18px;font-weight:800;margin-bottom:20px}
+.ma{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+.ma button{padding:10px 20px;border-radius:10px;border:none;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
+.mc{background:var(--bg2);color:var(--text3);border:1px solid var(--border)}.ms{background:var(--green);color:var(--bg)}.md{background:var(--red2);color:var(--red)}
+.lk{background:var(--amber2);border:1px solid #f59e0b40;border-radius:12px;padding:24px;text-align:center;color:var(--amber);font-weight:700;font-size:16px}.lk p{font-size:13px;margin-top:6px;color:var(--text3);font-weight:500}
+.det-overlay{position:fixed;inset:0;background:#000000bb;z-index:200;display:flex;align-items:center;justify-content:center}
+.det-box{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:32px;width:620px;max-width:92vw;max-height:90vh;overflow-y:auto;animation:fadeUp .3s ease}
+.det-box h3{font-size:18px;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.det-grid{grid-template-columns:1fr}}
+.det-item{padding:12px;background:var(--bg2);border-radius:10px;border:1px solid var(--border)}
+.det-item.full{grid-column:1/-1}
+.det-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.det-val{font-size:14px;font-weight:600;color:var(--text);word-break:break-word}
+.det-val.green{color:var(--green)}
+.det-val.empty{color:var(--text3);font-style:italic;font-weight:400}
+.det-close{padding:10px 24px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text3);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:20px}
+.det-close:hover{border-color:var(--green);color:var(--green)}
+tr.clickable{cursor:pointer}tr.clickable:hover td{background:var(--bg4)!important}
+.ft{text-align:center;padding:20px;color:var(--text3);font-size:11px;border-top:1px solid var(--border);margin-top:40px}
+.loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;color:var(--green)}
+.loading .spin{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cfg-banner{background:var(--red2);border:1px solid var(--red);border-radius:12px;padding:20px;margin-bottom:20px;color:var(--red);font-size:13px;line-height:1.8}
+.cfg-banner code{background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px}
+</style>
+</head>
+<body>
+<div id="root"><div class="loading"><div class="spin"></div><div>Chargement...</div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  🔥 FIREBASE CONFIG — REMPLIS AVEC TES VALEURS             ║
+// ║  Voir les instructions dans le fichier INSTRUCTIONS.txt     ║
+// ╚══════════════════════════════════════════════════════════════╝
+var firebaseConfig = {
+  apiKey: "AIzaSyB1ghK8S8DPD_vizsu5Y27LQ8xHOOBupto",
+  authDomain: "portail-biomedical-chp-tata.firebaseapp.com",
+  databaseURL: "https://portail-biomedical-chp-tata-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "portail-biomedical-chp-tata",
+  storageBucket: "portail-biomedical-chp-tata.firebasestorage.app",
+  messagingSenderId: "769497400728",
+  appId: "1:769497400728:web:d17d0f99fff9d577a197ed"
+};
+
+var firebaseReady = false;
+try {
+  if (firebaseConfig.apiKey && firebaseConfig.apiKey.indexOf("REMPLACE") === -1) {
+    firebase.initializeApp(firebaseConfig);
+    window.fbDb = firebase.database();
+    firebaseReady = true;
+  }
+} catch(e) { console.error("Firebase init error:", e); }
+window.firebaseReady = firebaseReady;
+
+// Helper: read once
+window.fbRead = function(path) {
+  if (!firebaseReady) return Promise.resolve(null);
+  return window.fbDb.ref(path).once('value').then(function(snap){return snap.val()});
+};
+// Helper: write
+window.fbWrite = function(path, data) {
+  if (!firebaseReady) return Promise.resolve();
+  return window.fbDb.ref(path).set(data);
+};
+// Helper: listen
+window.fbListen = function(path, cb) {
+  if (!firebaseReady) return function(){};
+  var ref = window.fbDb.ref(path);
+  ref.on('value', function(snap){cb(snap.val())});
+  return function(){ref.off('value')};
+};
+
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  📧 EMAILJS CONFIG — REMPLIS AVEC TES VALEURS              ║
+// ║  Voir les instructions dans INSTRUCTIONS_FIREBASE.md        ║
+// ╚══════════════════════════════════════════════════════════════╝
+var emailConfig = {
+  publicKey: "TwZHH5_8prsyKjfTY",        // EmailJS Public Key
+  serviceId: "service_50y5t4j",        // EmailJS Service ID (ex: service_gmail)
+  templateId: "template_l40cayh"        // EmailJS Template ID
+};
+
+var emailReady = false;
+try {
+  if (emailConfig.publicKey !== "REMPLACE_MOI") {
+    emailjs.init(emailConfig.publicKey);
+    emailReady = true;
+  }
+} catch(e) { console.error("EmailJS init error:", e); }
+window.emailReady = emailReady;
+
+window.sendNotif = function(type, data) {
+  if (!emailReady) return Promise.resolve();
+  return emailjs.send(emailConfig.serviceId, emailConfig.templateId, {
+    notification_type: type,
+    reference: data.id || "",
+    date: data.date || new Date().toISOString().slice(0,10),
+    service: data.serviceName || "",
+    equipement: data.eq || "",
+    description: data.desc || "",
+    urgence: data.urg || "",
+    demandeur: data.who || "",
+    marque: data.marque || ""
+  }).then(function(){console.log("Email sent")}).catch(function(e){console.error("Email error:",e)});
+};
+
+window.INIT_EQ=[{"s":"BLOC OPERATOIRE","e":"AMPLIFICATEUR DE BRILLANCE","m":"GENORAY","o":"ZEN-7000","r":"GC700C/SC700A","i":"4095/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"TABLE CHAUFFANTE POUR BEBE","m":"","o":"NIW 3500","r":"1508194","i":"5017/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"NEGATOSCOPE A 4 PLAGES","m":"FAZZINI","o":"02.160.00","r":"","i":"5018/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL 90l/minute","m":"CAMI","o":"NEW HOSPIVAC 400","r":"410350/05","i":"3019/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL 90l/minute","m":"CAMI","o":"NEW HOSPIVAC 400","r":"11338","i":"5921/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"PHACO","m":"ALCON","o":"LAUREATE","r":"X1303370701","i":"5019/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MICROSCOPE OPHTALMIQUE","m":"LEICA F12","o":"","r":"170114002","i":"5020/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"BISTOURI ELECTRIQUE","m":"LAMIDY","o":"SURGILEC 408D","r":"967","i":"4032/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"CHARIOT D'HANESTHESIE","m":"","o":"","r":"","i":"2923/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ECLAIRAGE MOBILE","m":"RIMSA","o":"PENTALED 30N PI","r":"22579","i":"5884/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"GARROT PNEUMATIQUE ELECTRIQUE","m":"DDMEDICAL","o":"","r":"903021804","i":"6900/21/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ECLAIRAGE MOBILE","m":"RIMSA","o":"PENTALED28","r":"23880","i":"6760/21/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"CHARIOT DE REANIMATION","m":"","o":"","r":"","i":"6212/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL ELECTRIQUE MOBIL 20 L","m":"YUWELL","o":"7A-23B","r":"","i":"6210/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL ELECTRIQUE MOBIL 20 L","m":"YUWELL","o":"7A-23B","r":"","i":"6211/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"CHARIOT DE REANIMATION AVEC TIROIRE","m":"","o":"","r":"","i":"6213/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"LARYNGOSCOPE VIDEO","m":"US-10H","o":"","r":"","i":"6157/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR DE REANIMATION","m":"TECME","o":"NEUMOVENT","r":"201041831083A1V","i":"6573/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR DE REANIMATION","m":"TECME","o":"NEUMOVENT","r":"201042311083A1V","i":"6572/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"VENTILLATEUR D'ANESTHESIE","m":"MAQUET","o":"FLOW-I","r":"4224","i":"6570/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ECHOGRAPHE ULTRA PORTABLE","m":"INNOSIGHT","o":"PHILIPS TAIWAN","r":"QOY6K50002","i":"6417/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"VIDEO LARYNGOSCOPE AVEC LAMPES REUTILISABLES","m":"HUGEMED","o":"VL3R","r":"R201802360","i":"6306/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR D'ANESTHESIE","m":"DRAGER","o":"FABIUS","r":"ARTK-0047","i":"4030/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR D'ANESTHESIE","m":"MINDRAY","o":"WATO EX-35","r":"KG-8B003063","i":"5867/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR D'ANESTHESIE","m":"MINDRAY","o":"WATO EX-65","r":"KT-94002685","i":"5933/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR LEGER D'URGENCE ET DE REANIMATION","m":"AEOMED","o":"SHANGRILA 935","r":"SL935E4R44049","i":"5881/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR LEGER D'URGENCE ET DE REANIMATION","m":"AEOMED","o":"SHANGRILA 935","r":"SL935E4R44168","i":"5882/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"NEBULISEUR","m":"HIKONEB 9065","o":"906S/LCD","r":"AC18-AA00479","i":"5883/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"COLONNE D'ARTHROSCOPIE","m":"ARTHREX","o":"","r":"184326-001","i":"5928/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"COLONNE CELEOSCOPIE","m":"HERMANN","o":"","r":"DF1947002/958529/S1947001/958578","i":"5866/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"COLONNE CILEOSCOPIE","m":"GERMANIE/SONY","o":"","r":"M13100B-1097","i":"1329/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"TABLE ELECTRIQUE DE CHIRURGIE GENERAL","m":"BARR FAB","o":"SEGURANCA","r":"122610319","i":"5932/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"TABLE ELECTRIQUE DE CHIRURGIE GENERAL","m":"MINDRAY","o":"HYBASE 6100","r":"G9-8C006964","i":"5850/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"TABLE ELECTRIQUE D'ORTHOPEDIE ET TRAUMATOLOGIE","m":"MINDRAY","o":"HYBASE 8500","r":"25-9600210","i":"5838/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"TABLE CHAUFANTE","m":"NESTO","o":"MAT600","r":"1875","i":"4027/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"LAVABO ASEPTIQUE DOUBLE POSTE","m":"HAND SINK WASHER","o":"SUMER","r":"20604202121","i":"5918/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"GENERATEUR DE BISTOURIE ELECTRIQUE","m":"LAMIDY SURGILE","o":"C408D","r":"970","i":"4033/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"GENERATEUR DE BISTOURIE ELECTRIQUE","m":"SURTRON","o":"400HP","r":"5180228833","i":"5886/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"GENERATEUR DE BISTOURIE ELECTRIQUE","m":"SURTRON","o":"400HP","r":"5180228832","i":"5885/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"MINDRAY","o":"BENEVIEW T6","r":"CG-8B108847","i":"5854/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR DE SURVEILLANCE MULTIPARAMETRIQUE","m":"CONTEC","o":"CMS6000","r":"","i":"6098/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"VIDEO LARYNGOSCOPE AVEC LAMPES REUTILISABLES","m":"HUGEMED","o":"VL3R","r":"R201802402","i":"6304/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"AUTOCLAVE DE PAILLASSE","m":"FUJIFILM MEDICAL","o":"EAC-4000D","r":"30155","i":"7537/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRE","m":"FUKUDA","o":"DS-8100M","r":"50310044","i":"7538/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"TABLE D'OPERATION POUR CHIRURGIE GYNECO-OBSTETRIQUE","m":"INFIMED","o":"OT-02","r":"1123/067","i":"7579/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"APPAREIL D'ANESTHESIE ADULTE ET ENFANT AVEC CAPNOGRAPHE INTEGREE","m":"ETERNITY","o":"AM852","r":"A86000045","i":"7606/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"AUTOCLAVE HORIZONTALE DOUBLE FACE","m":"SUMER","o":"ADELA+A86:E102-2CKK","r":"2020/01-063","i":"7607/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ECLAIRAGES D'OPERATION/SCIALYTIQUE PLAFONIER","m":"PANNALEX","o":"LED","r":"240219-012315","i":"7608/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ECLAIRAGES D'OPERATION/SCIALYTIQUE PLAFONIER","m":"","o":"","r":"240219-012312","i":"7609/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"COLONNE POUR HYSTEROSCOPIE DIAGNOSTIQUE ET OPERATOIRE","m":"KARL STORZ","o":"TC100FR-TH110-TM220-20161401-1-495ND-26331101-1-UG230-26120BA-39301BS-26161VS-26153BI-26153BO-26159UHW-26159H-26159SHW-39301H-26020FA-39301BS-26055EB-26055SC-26055CA-26055GP1-26055MB-26055BL1-27176LEB-39301H-","r":"PL905928-P,NL085760-K,OL27204,31046122,UN04293","i":"7637/25 CHP / TATA"},{"s":"BLOC OPERATOIRE","e":"ECHOGRAPHE","m":"MINDRAY","o":"Consona N6","r":"LR5-55006706","i":"7702/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR D'ANESTHESIE","m":"PENLON","o":"Prima 320","r":"6140DJ1318","i":"7698/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR D'ANESTHESIE","m":"","o":"","r":"6140DJ1319","i":"7699/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"PHACO","m":"ALCON","o":"CENTURION SILVER","r":"2501661601X","i":"7700/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MICROSCOPE OPERATOIR POUR CHIRURGIE OPHTALMIQUE","m":"ALCON","o":"LuxoR Revalia","r":"2401733801X","i":"7694/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"AUTOCLAVE 2 FACE","m":"CLINICLAVE","o":"45MD","r":"2024C45MD1005","i":"7745/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR DE RÉANIMATION","m":"HAMILTON MEDICAL","o":"HAMILTON C3","r":"17854","i":"7696/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"","m":"","o":"","r":"17853","i":"7697/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"MINDRAY","o":"IPM8","r":"FF96045704","i":"6235/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL ELECTRIQUE MOBILE","m":"CA-MI","o":"HOSPIVAC 305","r":"1502","i":"1967/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL ELECTRIQUE MOBILE","m":"SMAK","o":"YX980D","r":"D3.13.012","i":"7740/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL ELECTRIQUE MOBILE","m":"CA-MI","o":"HOSPIVAC 400","r":"11343","i":"5919/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"ASPIRATEUR CHIRURGICAL ELECTRIQUE MOBILE","m":"CA-MI","o":"ASKIR C30 BASIC 2","r":"10078","i":"7743/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"MINDRAY","o":"BENEVIEW T6","r":"CG-8B108699","i":"5852/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"NEGATOSCOP","m":"FAZZINI","o":"","r":"02.160.00","i":"4035/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"DEFIBRILATEUR","m":"NIHON KOHDEN","o":"TEC-5621","r":"6325","i":"6231/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"BISTOURI","m":"LAMIDEY NOURI MEDICAL","o":"V10GMCB","r":"2647","i":"7741/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"NEGATOSCOP","m":"MED'X","o":"","r":"","i":"7742/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"SERINGUE AUTO POUSEUSE","m":"ASYN MEDICAL","o":"EN-S7 Smart","r":"71180310480","i":"5870/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"SERINGUE AUTO POUSEUSE","m":"ASYN MEDICAL","o":"EN-S7 Smart","r":"71170614552","i":"5875/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"SERINGUE AUTO POUSEUSE","m":"ASYN MEDICAL","o":"EN-S7 Smart","r":"71181112566","i":"5869/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"SERINGUE AUTO POUSEUSE","m":"FRESENIUS KABI","o":"INJECTOMAT AGILIA","r":"20886768","i":"7744/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR DE RÉANIMATION MOBILE","m":"DRAGER","o":"OXYLOG 1000","r":"ARNL-0122","i":"4017/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR DE RÉANIMATION MOBILE","m":"SPENCER","o":"118NXT","r":"OP3-18-07483-01-0001","i":"5908/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"RESPIRATEUR DE CHIRURGIE MOBILE","m":"CA-MI","o":"NEW ASKIR 30","r":"73582","i":"5910/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"LAVEUR","m":"AT-OS","o":"AWD655-10D","r":"W24252746","i":"7746/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"AUTOCLAVE DE PAILLASSE","m":"SHINVA","o":"T24","r":"202435127","i":"7691/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"MINDRAY","o":"IPM8","r":"FF-96045671","i":"7747/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"BIOCARE","o":"PM-900","r":"C720051469","i":"6300/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"BIOCARE","o":"PM-901","r":"","i":"7635/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"MONITEUR MULTIPARAMETRIQUE","m":"BIOCARE","o":"PM-902","r":"","i":"7636/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"BISTOURI ELECTRIQUE A ULTRASOUND","m":"HOCERMED","o":"USG10 Plus","r":"HKUSG10S03399","i":"7748/CHP/TATA"},{"s":"BLOC OPERATOIRE","e":"AUTOCLAVE","m":"ICANCLAVE","o":"STE-23-D","r":"A16181B23D2E33110I","i":"6163/CHP/TATA"},{"s":"HEMDIALYSE","e":"MULTIPARAMETRE AD","m":"BLT/ENSYS","o":"ANYVIEW A5","r":"AO44E002127/AO44E002125/80003130803313","i":"5280/5281/5282CHPTATA"},{"s":"HEMDIALYSE","e":"AUTOCLAVE SUR TABLE","m":"STEAM STERILIZER","o":"VACUUM SPEED CLAVE-48L","r":"S-4844044/S-4844036","i":"5499/5500CHPTATA"},{"s":"HEMDIALYSE","e":"ELECTROCARDIO GRAMME ECG 6 PISTES","m":"EDAN","o":"SE-601B","r":"114220-1113602650023","i":"2667CHPTATA"},{"s":"HEMDIALYSE","e":"DEFIBRILLATEUR","m":"MINDRAY","o":"BENEHEART D6","r":"D6-34008624","i":"2666CHPTATA"},{"s":"HEMDIALYSE","e":"OXYMETRE PULSEE","m":"EDAN","o":"M3","r":"11320810318965L","i":"2670CHPTATA"},{"s":"HEMDIALYSE","e":"RESPIRATEUR VOLUMETRIQUE LEGER","m":"AEOMED","o":"SHANGRLLA935","r":"SL935(E)ZKYX023","i":"1963CHPTATA"},{"s":"HEMDIALYSE","e":"ASPIRATEUR ELECTRIQUE PM","m":"GIMA","o":"RE310356/04","r":"","i":""},{"s":"HEMDIALYSE","e":"TENSIOMETRE AUTOMATIQUE","m":"EDAN","o":"M3","r":"302060-1113603210008","i":"2668CHPTATA"},{"s":"HEMDIALYSE","e":"POUSSE SERINGUE AUTOMATIQUE","m":"MEDINA","o":"POMPA STRZYKAWKOWA","r":"0119208/14","i":""},{"s":"HEMDIALYSE","e":"CONCENTRATEUR D'OXYGENE","m":"AIRSEP","o":"NEW LIFE","r":"N5150060","i":"2933CHPTATA"},{"s":"HEMDIALYSE","e":"APPAREIL A TENSION MANUEL + STHETOSCOPE","m":"","o":"","r":"","i":"2927/2928/2929/2930CHPTATA"},{"s":"HEMDIALYSE","e":"ASPIRATEUR ELECTRIQUE MOBILE","m":"AUROVAC","o":"5320556","r":"08435331739725(10)31803","i":"2931/2932CHPTATA"},{"s":"HEMDIALYSE","e":"DEBIMETRE AVEC HUMIDIFICATEUR","m":"HERSIL","o":"","r":"","i":"2934/2935/2936/2937/2938/2939/2940/2941/2942/2943CHPTATA"},{"s":"HEMDIALYSE","e":"ECHODOPPLER COULEUR PORTABLE","m":"CHISON","o":"ECO5","r":"119060162","i":"6302/CHP/TATA"},{"s":"HEMDIALYSE","e":"GENERATEUR D'HEMODIALYSE","m":"TORAY","o":"","r":"","i":"54/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"TORAY","o":"","r":"","i":"55/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"TORAY","o":"","r":"","i":"56/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"TORAY","o":"","r":"","i":"57/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"TORAY","o":"","r":"","i":"58/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"TORAY","o":"","r":"","i":"195/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"B-BRAUN","o":"","r":"","i":"91/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"B-BRAUN","o":"","r":"","i":"92/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"B-BRAUN","o":"","r":"","i":"93/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"B-BRAUN","o":"","r":"","i":"94/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"B-BRAUN","o":"","r":"","i":"95/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"B-BRAUN","o":"","r":"","i":"96/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"NIKKISO DBB-06","o":"","r":"","i":"192/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"NIKKISO DBB-07","o":"","r":"","i":"193/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"NIKKISO DBB-07","o":"","r":"","i":"194/CHP/TATA"},{"s":"HEMDIALYSE","e":"","m":"FRESINUS","o":"","r":"","i":"179/CHP/TATA"},{"s":"HEMDIALYSE","e":"OSMOSEUR","m":"EP URO","o":"","r":"","i":"196/CHP/TATA"},{"s":"HEMDIALYSE","e":"OSMOSEUR CULLIGON","m":"AQUA-CLUR","o":"1600","r":"MFP445","i":"191/CHP/TATA"},{"s":"HEMDIALYSE","e":"OSMOSEUR CULLIGON","m":"AQUA-CLUR","o":"1600","r":"MFP445","i":"190/CHP/TATA"},{"s":"HEMDIALYSE","e":"GENERATEUR D'HEMODIALYSE","m":"B-BRAUN","o":"DIALOG +","r":"279916","i":"7566/CHP/TATA"},{"s":"HEMDIALYSE","e":"GENERATEUR D'HEMODIALYSE","m":"B-BRAUN","o":"DIALOG +","r":"279911","i":"7567/CHP/TATA"},{"s":"HEMDIALYSE","e":"GENERATEUR D'HEMODIALYSE","m":"B-BRAUN","o":"DIALOG +","r":"279917","i":"7568/CHP/TATA"},{"s":"HEMDIALYSE","e":"GENERATEUR D'HEMODIALYSE","m":"B-BRAUN","o":"DIALOG +","r":"252144","i":"187/CHP/TATA"},{"s":"HEMDIALYSE","e":"GENERATEUR D'HEMODIALYSE","m":"B-BRAUN","o":"DIALOG +","r":"252289","i":"188/CHP/TATA"},{"s":"REANIMATION","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"°00007°","i":"6924/CHP/TATA"},{"s":"REANIMATION","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"°00005°","i":"6925/CHP/TATA"},{"s":"REANIMATION","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"°00003°","i":"6927/CHP/TATA"},{"s":"REANIMATION","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"°00008°","i":"6928/CHP/TATA"},{"s":"REANIMATION","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"°00052°","i":"6929/CHP/TATA"},{"s":"REANIMATION","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"°00013°","i":"6930/CHP/TATA"},{"s":"REANIMATION","e":"AUTOCLAVE DE PAILLASE 23L","m":"ICANCLAVE","o":"STE-23-D","r":"A21804B23D2E32110","i":"6938/CHP/TATA"},{"s":"REANIMATION","e":"LAMPE D'EXAMEN HALOGENE","m":"PROVITA","o":"SERIE 1","r":"2012008","i":"6955/CHP/TATA"},{"s":"REANIMATION","e":"ECG 12 PISTES","m":"CONTEC","o":"1200G","r":"2101230029","i":"6969/CHP/TATA"},{"s":"REANIMATION","e":"ECG 12 PISTES","m":"CONTEC","o":"1200G","r":"2101230027","i":"6971/CHP/TATA"},{"s":"REANIMATION","e":"NEGATOSCOPE A 2 PLAGES","m":"MEDASELIFE","o":"OP-NS02","r":"","i":"6992/CHP/TATA"},{"s":"REANIMATION","e":"NEGATOSCOPE A 2 PLAGES","m":"MEDASELIFE","o":"OP-NS02","r":"","i":"6993/CHP/TATA"},{"s":"REANIMATION","e":"NEGATOSCOPE A 2 PLAGES","m":"MEDASELIFE","o":"OP-NS02","r":"","i":"6995/CHP/TATA"},{"s":"REANIMATION","e":"NEBULISEUR","m":"BEURER","o":"","r":"","i":"6997/CHP/TATA"},{"s":"REANIMATION","e":"NEBULISEUR","m":"BEURER","o":"","r":"","i":"6999/CHP/TATA"},{"s":"REANIMATION","e":"LARAYNGOSCOPE A 4 LAMES","m":"ASP","o":"","r":"","i":"7017/CHP/TATA"},{"s":"REANIMATION","e":"LARAYNGOSCOPE A 4 LAMES","m":"ASP","o":"","r":"","i":"7018/CHP/TATA"},{"s":"REANIMATION","e":"CONCENTRATEUR D'OXYGENE 10L/MIN","m":"OLIVE","o":"OLV-10","r":"2021107151","i":"7056/CHP/TATA"},{"s":"REANIMATION","e":"CONCENTRATEUR D'OXYGENE 10L/MIN","m":"AERTI","o":"AE10","r":"","i":"7063/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0714039","i":"7213/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0811002","i":"7214/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0702175","i":"7215/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0709092","i":"7216/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0713036","i":"7217/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0717098","i":"7218/CHP/TATA"},{"s":"REANIMATION","e":"RESPIRATEUR DE REANIMATION","m":"NORTHREN MEDITEC LIMITED","o":"CRIUS V6","r":"V6-I0717005","i":"7219/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600099","i":"7220/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600053","i":"7223/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600100","i":"7224/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600043","i":"7225/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600096","i":"7226/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600018","i":"7227/CHP/TATA"},{"s":"REANIMATION","e":"MONITEUR MULTIPARAMETRIQUE 12.1 POUCES","m":"EDAN","o":"X12","r":"261594-M21812600009","i":"7228/CHP/TATA"},{"s":"REANIMATION","e":"ELECTROCARDIOGRAPHE 6 PISTES","m":"ZONCARE","o":"ZQ-1206","r":"H121180103200N0063","i":"7229/CHP/TATA"},{"s":"REANIMATION","e":"ELECTROCARDIOGRAPHE 6 PISTES","m":"ZONCARE","o":"ZQ-1206","r":"H121180103200N0015","i":"7230/CHP/TATA"},{"s":"REANIMATION","e":"LAVABO ASEPTIQUE DOUBLE POSTES","m":"MIXTA","o":"MEY 1020","r":"R2-MX2307MA-324/1/7","i":"7558/CHP/TATA"},{"s":"REANIMATION","e":"DEFIBRILATEUR","m":"CARDIOLIFE","o":"TEC-8352K","r":"","i":"7584/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"ENMIND","r":"","i":"63081/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"","r":"","i":"63091/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"","r":"","i":"63071/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"","r":"","i":"63181/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"","r":"","i":"63061/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"","r":"","i":"63171/CHP/TATA"},{"s":"REANIMATION","e":"POMPE POUSSE-SERINGUE","m":"ENMIND","o":"","r":"","i":"63151/CHP/TATA"},{"s":"REANIMATION","e":"CENTRIFUGEUSE","m":"HETTICH","o":"ROTOFIX 32A","r":"0022236-03","i":"2693/CHP/TATA"},{"s":"MEDECINE","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMKZ088","i":"6579/CHP/TATA"},{"s":"MEDECINE","e":"MONITEUR MULTIPARAMETRIQUE","m":"ZONCARE","o":"PM-70000D","r":"H121260115002N0149","i":"7048/21"},{"s":"MEDECINE","e":"ECHOGRAPHE GYNECO-OBSTERICAL","m":"VINNO","o":"VINNO E10","r":"U0192EQ23","i":"6560/CHP/TATA"},{"s":"MEDECINE","e":"ECHOCARDIOGRAPHE NUMERIQUE","m":"ESAOTE","o":"MYLAB X6","r":"300813","i":"6295/CHP/TATA"},{"s":"MEDECINE","e":"NEGATOSCOPE","m":"","o":"","r":"","i":"5821/CHP/TATA"},{"s":"MEDECINE","e":"ELECTROCARDIOGRAPHE 6 PISTES","m":"ZONCARE","o":"ZQ-1206","r":"","i":"7238/CHP/TATA"},{"s":"MEDECINE","e":"ASPIRATEUR ELECTRIQUE CHIRURGICAL","m":"OPTIMIUM","o":"OP-AC07","r":"OP1903200","i":"5945/CHP/TATA"},{"s":"MEDECINE","e":"MICROSCOPE","m":"SCANER CALIPSO","o":"MD-500","r":"183013","i":"5839/CHP/TATA"},{"s":"MEDECINE","e":"UNITE DE VIDEOCOLONOSCOPIE/FIBROSCOPIE","m":"AOHUA","o":"VME-1650","r":"VCL202054","i":"2972/CHPTATA"},{"s":"MEDECINE","e":"HOLTER TENTIONNEL","m":"OPTIMIUM PRO","o":"OP-HT50","r":"23100200025","i":"7631/CHP/TATA"},{"s":"MEDECINE","e":"ECG","m":"ZONCARE","o":"","r":"H121180103200N0016","i":"6327/CHP/TATA"},{"s":"MEDECINE","e":"AUTOCLAVE","m":"MAMMOUTH","o":"LIGHT 23","r":"LHN23A0851","i":"12876 DMST"},{"s":"MEDECINE","e":"ASPIRATEUR","m":"TRADE MARK","o":"305","r":"233607","i":"9735 DMST"},{"s":"MEDECINE","e":"NEBULISEUR","m":"GIMA","o":"HOSPYNEB","r":"0147408/ASP","i":"2020/CHPTATA"},{"s":"MEDECINE","e":"NEBULISEUR","m":"GIMA","o":"HOSPYNEB","r":"0144817/ASP","i":"1835/CHP/TATA"},{"s":"MEDECINE","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMEF 014","i":"6320/CHP/TATA"},{"s":"MEDECINE","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMEF 095","i":"6321/CHP/TATA"},{"s":"MEDECINE","e":"ASPIRATEUR ELECTRIQUE","m":"CAMI","o":"HOSPIVAC400","r":"11610","i":"5923/CHP/TATA"},{"s":"MEDECINE","e":"NUBILISEUR","m":"ULTRASONIQUE","o":"","r":"7208","i":"5820/CHP/TATA"},{"s":"MEDECINE","e":"NUBILISEUR","m":"ULTRASONIQUE","o":"","r":"","i":"5819/CHP/TATA"},{"s":"MEDECINE","e":"AUTOCLAVE","m":"EURONDA","o":"E9 INSPECTION","r":"EH0180064180064","i":"5698/CHP/TATA"},{"s":"MEDECINE","e":"ECHODOPPLER POUR CARDIOLOGIE","m":"VINNO","o":"VINNO E30","r":"U0072ER003","i":"6561/CHP/TATA"},{"s":"MEDECINE","e":"AUTOCLAVE DE PAILLASSE","m":"FUJIFILM MEDICAL","o":"EAC-4000D","r":"30119","i":"7535/CHP/TATA"},{"s":"MEDECINE","e":"ASPIRATEUR ELECTRIQUE","m":"CAMI","o":"NEW HOSPIVAC 400 FULL S","r":"11388","i":"5924/CHP/TATA"},{"s":"MEDECINE","e":"ASPIRATEUR ELECTRIQUE","m":"TRADE MARK","o":"305","r":"233607","i":""},{"s":"MEDECINE","e":"MONITEUR MULTIPARAMETRIQUE","m":"BLT","o":"Q5","r":"","i":"6167/CHP/TATA"},{"s":"MEDECINE","e":"MONITEUR MULTIPARAMETRIQUE","m":"ZONECARE","o":"","r":"H121 260115002N0/49","i":"7048/CHP/TATA"},{"s":"MEDECINE","e":"ECG","m":"NIHONKODEN","o":"","r":"9020K","i":""},{"s":"DENTAIRE","e":"DESTILLATEUR","m":"MAMMOUTH","o":"MH943","r":"431969","i":"3077/CHP/TATA"},{"s":"DENTAIRE","e":"AUTOCLAVE DE PAILLASSE","m":"NEWMED","o":"SUPERIOR B23","r":"EHB23E1178","i":"3076/CHP/TATA"},{"s":"DENTAIRE","e":"AMALGAMATEUR","m":"DENTOMAT","o":"DEGUSA","r":"116927","i":"3078/CHP/TATA"},{"s":"DENTAIRE","e":"AMALGAMATEUR","m":"DENTOMAT","o":"DEGUSA","r":"64541","i":"3079/CHP/TATA"},{"s":"DENTAIRE","e":"DETARTREUR","m":"SUPRASSON","o":"P5","r":"859025018","i":"3082/CHP/TATA"},{"s":"DENTAIRE","e":"CAPTEUR","m":"ACTEON","o":"SATELEC","r":"305617028","i":"3083/CHP/TATA"},{"s":"DENTAIRE","e":"LAMPE PHOTO POLYMERISANTE","m":"DENTAMERICA","o":"LITEX 680 A","r":"6825807","i":"3085/CHP/TATA"},{"s":"DENTAIRE","e":"LAMPE PHOTO POLYMERISANTE","m":"VIVADENTE","o":"ASTRALIS 5","r":"22934","i":"3084/CHP/TATA"},{"s":"DENTAIRE","e":"ART 1 RADIOVISIOGRAPHIE RVG","m":"SOPRO ACTEON","o":"SOPIX1","r":"S802-111142","i":"6416/CHP/TATA"},{"s":"DENTAIRE","e":"THERMOSOUDEUSE","m":"Dental x","o":"Newseal 05","r":"","i":"3080/CHPTATA"},{"s":"DENTAIRE","e":"COMPRESSEUR","m":"LARFON","o":"TOP 1.5","r":"50242","i":"5454/CHP/TATA"},{"s":"DENTAIRE","e":"COMPRESSEUR","m":"MGF","o":"CS30/15","r":"3150940","i":"5455/CHP/TATA"},{"s":"DENTAIRE","e":"UNITE DENTAIRE MOBILE","m":"ASPETICO","o":"","r":"","i":"5215/CHP/TATA"},{"s":"DENTAIRE","e":"ASPIRATEUR","m":"CATTANI spa","o":"FC257886","r":"","i":""},{"s":"DENTAIRE","e":"ASPIRATEUR/COMPRESSEUR","m":"MGF","o":"","r":"","i":"5051/CHP/TATA"},{"s":"DENTAIRE","e":"LAMPE A PHOTO POLYMERISER","m":"ACTEON","o":"SATELEC","r":"309538040","i":"7564/CHP/TATA"},{"s":"DENTAIRE","e":"DETARTREUR AVEC RESERVOIR","m":"WOODPECKER","o":"UDS-E LED","r":"S2371409EL","i":"7565/CHP/TATA"},{"s":"DENTAIRE","e":"FAUTEUIL DENTAIRE","m":"RITTER","o":"Ultimate Comfort Smart","r":"22020064","i":""},{"s":"DENTAIRE","e":"FAUTEUIL DENTAIRE","m":"","o":"","r":"22020088","i":""},{"s":"DENTAIRE","e":"COMPRESSEUR","m":"","o":"S45","r":"223675","i":""},{"s":"DENTAIRE","e":"DETARTREUR","m":"WOODPECKER","o":"DTE D600 LED","r":"S22A0468D600l","i":""},{"s":"DENTAIRE","e":"RADIO MURAL","m":"NEWTON","o":"RXDC","r":"46591","i":""},{"s":"DENTAIRE","e":"ASPIRATEUR DUR DENTAL VS 300 S","m":"DURR DENTAL","o":"7122-02/002","r":"S505396006","i":""},{"s":"DENTAIRE","e":"ASPIRATEUR DUR DENTAL VS 300 S","m":"","o":"","r":"S505396046","i":""},{"s":"SERVICE MERE ET ENFANT","e":"ECHOGRAPHE","m":"MINDRAY","o":"DC-60","r":"8C78001171","i":"4094/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"TABLE CHAUFFANTE","m":"DAVID","o":"HKN90","r":"2026452","i":"5479CHPTATA"},{"s":"SERVICE MERE ET ENFANT","e":"TABLE CHAUFFANTE","m":"DAVID","o":"HKN90","r":"2026464","i":"5478CHPTATA"},{"s":"SERVICE MERE ET ENFANT","e":"ASPIRATEUR ELECTRIQUE","m":"K","o":"P-SV305","r":"901263","i":"4042CHPTATA"},{"s":"SERVICE MERE ET ENFANT","e":"CARDIOTOCOGRAPHE","m":"EDAN","o":"F3","r":"M16C0150001460322","i":"3018/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"PHOTOTHERAPIE","m":"BILILED MINI","o":"","r":"","i":"2712/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR DE RYTHME CARDIAQUE FŒTAL","m":"EDAN","o":"F6","r":"","i":"6154/CHP TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR DE RYTHME CARDIAQUE FŒTAL","m":"EDAN","o":"F6","r":"560038-M19C09700007","i":"6156/CHP TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMEF 066","i":"6319/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"SERINGUE AUTOMATIQUE","m":"SINO MDT","o":"SN-50C6T","r":"0513200317A00708","i":"6214/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"CARDIOTOCOGRAPHE","m":"EDAN","o":"F2","r":"560051-M19610950013","i":"7341/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"BL ANYVIEWS","o":"A6","r":"","i":"5449/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"BL ANYVIEWS","o":"A6","r":"","i":"5450/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"AUTOGRAPHE","m":"MINDRAY","o":"DP-4900","r":"NG-09000337","i":"5477/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"TABLE CHAUFFANTE","m":"NOVOS","o":"KANGAROO KR 1000","r":"","i":"7240/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"ASPIRATEUR ELECTRIQUE","m":"CAMI","o":"NEW HOSPIVAC 400","r":"11328","i":"7242/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"MINDRAY","o":"BENEVIEW T6","r":"CG-8B108877","i":"5851/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"AUTOCLAVE DE PAILLASSE","m":"FUJIFILM MEDICAL","o":"EAC-4000D","r":"30138","i":"7536/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"ECG","m":"FUKUDA","o":"FX-8400","r":"50201376","i":"7540/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"EDAN","o":"X12","r":"261594-M21812600035","i":"7221/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"POUSSE SERINGUE 1V","m":"ENMIND","o":"EN-S7","r":"71201230411","i":"6588/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"POUSSE SERINGUE 1V","m":"ENMIND","o":"EN-S7","r":"71201230467","i":"6592/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"00016","i":"6922/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"COMEN","o":"C50","r":"K5201101027","i":"7326/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"NEBULISEUR","m":"BEURER","o":"","r":"","i":"6998/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"NEBULISEUR","m":"BEURER","o":"","r":"","i":"7002/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMKZ061","i":"6580/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"SOMO","o":"PM12E","r":"2020126748","i":"6325/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"TENSIOMETRE ELECTRIQUE","m":"OMRON","o":"M7INTELLI IT","r":"20190725925VG","i":"5938/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"CONCENTRATEUR D'OXYGEN","m":"KONSUNG","o":"KSN-5M","r":"ML20050380017","i":"6332/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"LAMPE D'EXAMEN","m":"LED BLANC 3W","o":"OP-068","r":"24062809-059","i":""},{"s":"SERVICE MERE ET ENFANT","e":"LAMPE D'EXAMEN","m":"LED BLANC 3W","o":"OP-068","r":"24062809-078","i":""},{"s":"SERVICE MERE ET ENFANT","e":"LAMPE D'EXAMEN","m":"LED NOIR 3W","o":"OP-06N","r":"23102506-080","i":""},{"s":"SERVICE MERE ET ENFANT","e":"MONITEUR MULTIPARAMETRIQUE","m":"MEDIANA","o":"M20","r":"400581 700019","i":""},{"s":"SERVICE MERE ET ENFANT","e":"AUTOCLAVE","m":"ALP","o":"CLM-40L","r":"700283","i":"7533/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"POUSSE SERINGUE","m":"ENMIND","o":"ENS-7","r":"71201230411","i":"6588/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"CONCENTRATEUR D'OXYGEN","m":"KONSUNG","o":"KSN-5T","r":"MC2005038007","i":"6331/CHP/TATA"},{"s":"SERVICE MERE ET ENFANT","e":"RESPIRATEUR DE REANIMATION","m":"DRAGGER","o":"SAVINA300","r":"ASLN-0335","i":""},{"s":"SERVICE MERE ET ENFANT","e":"NEBULISEUR","m":"BEURER","o":"IH21","r":"2024J53/035754","i":""},{"s":"SERVICE MERE ET ENFANT","e":"NEBULISEUR","m":"BEURER","o":"IH22","r":"2020J27/046382","i":""},{"s":"SERVICE MERE ET ENFANT","e":"OXYMETRE DE POULE","m":"BEURER","o":"P030","r":"","i":""},{"s":"RADIOLOGIE","e":"NEGATOSCOPE","m":"FAZZINI Italie","o":"02.080.00","r":"","i":"4006/CHP TATA"},{"s":"RADIOLOGIE","e":"TABLE RADIOGRAPHIQUE","m":"ITALRAY","o":"BTE","r":"2246317","i":"4091/CHP TATA"},{"s":"RADIOLOGIE","e":"PORTIQU MURAL","m":"PROTEC","o":"","r":"7503-0-0000","i":"4092/CHP/TATA"},{"s":"RADIOLOGIE","e":"TUBE RADIOGENE","m":"ITALRAY","o":"","r":"26-682-17","i":"4093/CHPTATA"},{"s":"RADIOLOGIE","e":"GENERATEUR","m":"ITALRAY PIXEL","o":"PIXEL CP","r":"CPD27078B17","i":"4090/CHP TATA"},{"s":"RADIOLOGIE","e":"NUMÉRISEUR MONO CASSETTE","m":"AGFA","o":"CR30-XM","r":"NO 60601-1-08","i":"4087/CHP TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"AGFA","o":"DRYSTAR AXYS","r":"60601-1-08","i":"4089/CHP TATA"},{"s":"RADIOLOGIE","e":"NUMERISEUR","m":"FUJIFILM","o":"PROFECT CS PLUS","r":"110910","i":"7243/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"FUJIFILM","o":"DRYPIX4000","r":"871-099","i":"7244/CHP/TATA"},{"s":"RADIOLOGIE","e":"ASPIRATEUR MOBIL POUR AMBULANCE","m":"CAMI","o":"NEW ASKIR 20","r":"24727","i":"6219/CHP/TATA"},{"s":"RADIOLOGIE","e":"DEFIBRILLATEUR SEMI AUTOMATIQUE","m":"CU Medical","o":"CU-SP1","r":"C1506E336","i":"6303/CHP/TATA"},{"s":"RADIOLOGIE","e":"MONITEUR MULTIPARAMETRIQUE","m":"SOMO","o":"PM 12E","r":"2020138905","i":"6329/CHP/TATA"},{"s":"RADIOLOGIE","e":"MONITEUR MULTIPARAMETRIQUE","m":"MINDRAY","o":"IPM8","r":"FF-95045084","i":"7245/CHP/TATA"},{"s":"RADIOLOGIE","e":"SCANNER","m":"GE","o":"OPTIMA CT520","r":"CBCRG2000092HM","i":"6233/CHP/TATA"},{"s":"RADIOLOGIE","e":"INJECTEUR AUTOMATIQUE","m":"IMAXION SALIENT","o":"DC045S","r":"S84332","i":"7239/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"CARESTREAM","o":"DV 5950","r":"59545021","i":"7246/CHP/TATA"},{"s":"RADIOLOGIE","e":"NUMERISEUR","m":"KONICA MINOLTA","o":"Regius 210 + CS7","r":"1202-50459","i":"6446/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"KONICA MINOLTA","o":"DRYPRO 832","r":"0922-60651","i":"6564/CHP/TATA"},{"s":"RADIOLOGIE","e":"APPAREIL DE REANIMATION PAR OXYGENOTHERAPIE HAUT DEBIT","m":"BMC Medical","o":"H-80A","r":"F1220A06038","i":"6577/CHP/TATA"},{"s":"RADIOLOGIE","e":"APPAREIL RADIO MOBILE NUMERISE","m":"CARESTREAM","o":"DRX REVOLUTION","r":"7611","i":"6595/CHP/TATA"},{"s":"RADIOLOGIE","e":"NUMERISEUR POUR MAMMOGRAPHE ET RADIOLOGIE","m":"CARESTREAM","o":"CR CLASSIC WAIV MAX","r":"4004811","i":"6596/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE A SEC 2 TIROIRS","m":"CARESTREAM","o":"DV 5950","r":"59546358","i":"6597/CHP/TATA"},{"s":"RADIOLOGIE","e":"ECHODOPPLER POUR RADIOLOGIE","m":"VINNO","o":"VINNO E30","r":"U0072EQ004","i":"6562/CHP/TATA"},{"s":"RADIOLOGIE","e":"NEGATOSCOPE","m":"MST-P","o":"","r":"","i":"5823/CHP/TATA"},{"s":"RADIOLOGIE","e":"RADIO MOBILE","m":"NEUSOFT","o":"NEUVISION 530M","r":"DRY00120204006","i":"6563/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"FUJIFILM","o":"DRYPIX4000","r":"76415853","i":"7247/CHP/TATA"},{"s":"RADIOLOGIE","e":"SERVEUR PACS","m":"","o":"","r":"4H94C03","i":"6556/CHP/TATA"},{"s":"RADIOLOGIE","e":"RADIO MOBILE","m":"FUJIFILM","o":"DR-XD 1000","r":"36453339","i":"7542/CHP/TATA"},{"s":"RADIOLOGIE","e":"PROTECTEUR PLOMBER","m":"FUJIFILM","o":"","r":"LC23042729","i":"7563/CHP/TATA"},{"s":"RADIOLOGIE","e":"PROTECTEUR PLOMBER","m":"FUJIFILM","o":"","r":"","i":"7543/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"FUJIFILM","o":"DRYPIX8000","r":"27234601","i":"7544/CHP/TATA"},{"s":"RADIOLOGIE","e":"NEBULISEUR","m":"BEURER","o":"","r":"","i":"7000/CHP/TATA"},{"s":"RADIOLOGIE","e":"ECHOGRAPHE","m":"MINDRAY","o":"Consona N6","r":"LR5-55006693","i":"7701/CHP/TATA"},{"s":"RADIOLOGIE","e":"RADIO MOBILE","m":"INTERMIDICAL","o":"COMPACT DR PLUS","r":"9310-25-003-314","i":"7695/CHP/TATA"},{"s":"RADIOLOGIE","e":"MAMMOGRAPHES","m":"HEDY MEDICALE","o":"MXR-550","r":"3001125060300090","i":"7692/CHP/TATA"},{"s":"RADIOLOGIE","e":"RADIO PANORAMIQUE DENTAIRE 2D","m":"DURR DENTAL","o":"VistaPano S Ceph - 2207100011","r":"R203000827","i":"7693/CHP/TATA"},{"s":"RADIOLOGIE","e":"TABLE RADIO STANDARD","m":"CONTROL-x Medical","o":"PERFORM X F-100","r":"P-1314","i":"7736/CHP/TATA"},{"s":"RADIOLOGIE","e":"REPROGRAPHE","m":"AGFA","o":"CRYSTAL IMAGER","r":"161024","i":"7737/CHP/TATA"},{"s":"RADIOLOGIE","e":"ECHOGRAPHE","m":"MINDRAY","o":"Consona N9","r":"LQ6-53003549","i":"7735/CHP/TATA"},{"s":"URGENCE","e":"ASPIRATEUR ELECTRIQUE","m":"TRADE MARK","o":"305","r":"931192","i":"4051/CHP/TATA"},{"s":"URGENCE","e":"ASPIRATEUR ELECTRIQUE","m":"TRADE MARK","o":"305","r":"233616","i":"4052CHPTATA"},{"s":"URGENCE","e":"NEGATOSCOPE","m":"EMSYS","o":"","r":"","i":"2925/CHPTATA"},{"s":"URGENCE","e":"CHARIOT D'URGENCE AVEC TIROIR","m":"","o":"","r":"","i":"6277/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"MINDRAY","o":"PASSEPOR T V","r":"CO-PV03497","i":"4049/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"HWATIME","o":"H10","r":"200614020","i":"7612/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"ZONCARE","o":"PM-7000D","r":"H121260115002N0197","i":"7613/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"HWATIME","o":"H8","r":"250813014","i":"7662/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"250813003","i":"7663/CHP/TATA"},{"s":"URGENCE","e":"NEGATOSCOPE","m":"EMSYS","o":"","r":"","i":"2924/CHPTATA"},{"s":"URGENCE","e":"AUTOCLAVE DE PAILLASSE","m":"MAMMOUTH","o":"LIGHT 23","r":"HN23A08522","i":"4047/CHP/TATA"},{"s":"URGENCE","e":"AUTOCLAVE DE PAILLASSE","m":"CBM","o":"IGEA","r":"1507","i":"43/CHP/TATA"},{"s":"URGENCE","e":"SCIALYTIQUE MOBILE","m":"HANULUX","o":"HERAEUS BLUE80","r":"1000145","i":"4046/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"HWATIME","o":"H9","r":"200614021","i":"7611/CHP/TATA"},{"s":"URGENCE","e":"CHARIOT D'URGENCE EN ABS","m":"SAIKANG MEDICAL","o":"MLSCU054-ET","r":"","i":"6932/CHP/TATA"},{"s":"URGENCE","e":"CONCENTRATEUR D'OXYGENE","m":"","o":"","r":"","i":"4055/CHP/TATA"},{"s":"URGENCE","e":"DEFIBRILLATEUR","m":"METRAX","o":"M100","r":"73471017854","i":"1058/CHP/TATA"},{"s":"URGENCE","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"\"00037\"","i":"6926/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"ZONCARE","o":"PM-7000D","r":"H121260115002N0173","i":"7614/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"H121260115002N0198","i":"7615/CHP/TATA"},{"s":"URGENCE","e":"CHARIOT D'URGENCE EN ABS","m":"SAIKANG MEDICAL","o":"MLSCU054-ET","r":"","i":"6933/CHP/TATA"},{"s":"URGENCE","e":"ELECTROCARDIOGRAPHE 6 PISTES","m":"ZONCARE","o":"ZQ-1206","r":"H121180103200N0060","i":"7237/CHP/TATA"},{"s":"URGENCE","e":"RESPIRATEUR DE REANIMATION","m":"DRAGER","o":"SAVINA300","r":"ASLM0446","i":"5931/CHP/TATA"},{"s":"URGENCE","e":"RESPIRATEUR DE REANIMATION","m":"DRAGER","o":"SAVINA300","r":"ASLM-0394","i":"5930/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMKZ092","i":"6584/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"CMKZ062","i":"6587/CHP/TATA"},{"s":"URGENCE","e":"ASPIRATEUR CHIRURGICALE 20L/MIN","m":"YUWELL","o":"7A-23B","r":"24111300006","i":"7728/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"24111300092","i":"7729/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"24111300053","i":"7730/CHP/TATA"},{"s":"URGENCE","e":"NEGATOSCOPE","m":"","o":"","r":"","i":"5824/CHP/TATA"},{"s":"URGENCE","e":"NEGATOSCOPE A 2 PLAGES","m":"MEDASELIFE","o":"OP-NS02","r":"","i":"6996/CHP/TATA"},{"s":"URGENCE","e":"ELECTROCARDIOGRAPHE","m":"BIONICS/KOREA","o":"BCM-600","r":"600QE5035","i":"2969/CHPTATA"},{"s":"URGENCE","e":"DIFFUSEUR 505 CM ANIOS","m":"CM ANIOS","o":"","r":"","i":"3031/CHPTATA"},{"s":"URGENCE","e":"DEFIBRILLATEUR","m":"DEFIBTECH","o":"LIFE LINE","r":"","i":"6168/CHP/TATA"},{"s":"URGENCE","e":"ECG 3 PISTES","m":"ZONCARE","o":"IMAC 300","r":"D021280201001N0043","i":"6347/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"MINDRAY","o":"PASSEPOR T V","r":"CO-PV03511","i":"2096/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"","i":"2097/CHP/TATA"},{"s":"URGENCE","e":"ECG","m":"EDAN","o":"SE1200 EXPRESS","r":"460016-M18B03620063","i":"5876/CHP/TATA"},{"s":"URGENCE","e":"NEBULISEUR","m":"GIMA","o":"HOSPYNEB","r":"142694/161071","i":"4050/CHP/TATA"},{"s":"URGENCE","e":"ASPIRATEUR MOBILE ELECTRIQUE","m":"HOSPIVAC","o":"H350","r":"SL1816","i":"4048/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"E","o":"PM900","r":"C720030532","i":"6300/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRE","m":"FUKUDA","o":"DS-8100M","r":"50310043","i":"7539/CHP/TATA"},{"s":"URGENCE","e":"MONITEUR MULTIPARAMETRIQUE","m":"VOTEM","o":"VP1200","r":"CMKZ127","i":"6582/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"CMKZ105","i":"6581/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"CMKZ098","i":"6585/CHP/TATA"},{"s":"URGENCE","e":"SERINGUE AUTO POSSEUSE","m":"ENMIND","o":"EN-S5D","r":"52200410053","i":"6312/CHP/TATA"},{"s":"URGENCE","e":"SERINGUE AUTO POSSEUSE","m":"SinoMDT","o":"SN-50C6T","r":"1061250514A00777","i":"7731/CHP/TATA"},{"s":"URGENCE","e":"","m":"","o":"","r":"1061250514A00776","i":"7732/CHP/TATA"},{"s":"LABORATOIRE","e":"ANALYSEUR D ELECTROLYTE","m":"I SMART 30 PRO","o":"I SENS","r":"52850","i":"6805/21/CHP/TATA"},{"s":"LABORATOIRE","e":"APPAREIL HEMATO SYSMEX","m":"SYSMEX","o":"XN-1000 SA-01","r":"EA016","i":"5441/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE DE BIOCHIMIE","m":"BIOSYSTEMS","o":"A25","r":"831015085","i":"3070/CHP/TATA"},{"s":"LABORATOIRE","e":"APPAREIL SEROLOGIE HORMONOLOGIE","m":"BIOMERIEUX","o":"MINIVIDAS","r":"IVD1202900","i":"1330/CHP/TATA"},{"s":"LABORATOIRE","e":"DESTILLATEUR","m":"GFL","o":"2004","r":"12140219J","i":"5891/CHP/TATA"},{"s":"LABORATOIRE","e":"","m":"GFL","o":"2004","r":"12140419J","i":"5892/CHP/TATA"},{"s":"LABORATOIRE","e":"","m":"GFL","o":"2004","r":"","i":"5893/CHP/TATA"},{"s":"LABORATOIRE","e":"DESTILLATEUR","m":"GFL","o":"2002","r":"I10700403","i":"4000/CHP/TATA"},{"s":"LABORATOIRE","e":"CENTRIFUGEUSE","m":"HETTICH","o":"ROTOFIX 32 A","r":"0022236-03","i":"2693/CHP/TATA"},{"s":"LABORATOIRE","e":"CENTRIFUGEUSE","m":"HETTICH","o":"ROTOFIX 32 A","r":"16656","i":""},{"s":"LABORATOIRE","e":"CENTRIFUGEUSE (P FORMAT)","m":"HETTICH","o":"","r":"","i":"5595/CHP/TATA"},{"s":"LABORATOIRE","e":"CENTRIFUGEUSE","m":"MEXTRAZEL","o":"SELECTRA","r":"","i":"5597/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE DE COAGULATION","m":"SYSMEX","o":"CA-600 SERIES 620","r":"23682","i":"5895/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE D'HÉMOGLOBINE GLYQUÉE","m":"TRINITY BIOTECH","o":"PREMIER Hb9210","r":"202115","i":"7338/CHP/TATA"},{"s":"LABORATOIRE","e":"MICROSCOPE OPTIQUE","m":"OLYMPUS","o":"CX23","r":"8J88270","i":"5889/CHP/TATA"},{"s":"LABORATOIRE","e":"MICROSCOPE OPTIQUE","m":"OLYMPUS","o":"CX23","r":"8J88279","i":"3096/CHP/TATA"},{"s":"LABORATOIRE","e":"BAIN MARIE","m":"AMOS SCIENTIFIC","o":"AWB210","r":"150907096","i":"5370/CHP/TATA"},{"s":"LABORATOIRE","e":"BALANCE ELECTRIQUE","m":"METTLER","o":"PJ360","r":"8710562792","i":"3095/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOCLAVE AUTOMATIQUE","m":"RAYPA","o":"AES 75","r":"40163","i":"5888/CHP/TATA"},{"s":"LABORATOIRE","e":"AGITATEUR DE MICROPLAQUE","m":"","o":"","r":"","i":"3089/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE D'HEMOGLOBINE HBA1C","m":"LABNOVATION","o":"LD-560","r":"LK252587536","i":"7739/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE HEMOCULTURES ET MYCROBACTERIES","m":"BIOMERIEUX","o":"BACT/ALERT 3D60","r":"703BS5609","i":"5887/CHP/TATA"},{"s":"LABORATOIRE","e":"HOTTE A FLUX LAMINAIRE","m":"ESCO","o":"LVG-4AG","r":"2018-127761","i":"5444/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE DE BIOCHIMIE","m":"BIOSYSTEMS","o":"BA400","r":"834002591","i":"7581/CHP/TATA"},{"s":"LABORATOIRE","e":"APPAREIL HEMATO SYSMEX","m":"SYSMEX","o":"XN-1000 SA-01","r":"EB897","i":"7601/CHP/TATA"},{"s":"LABORATOIRE","e":"AUTOMATE DE COAGULATION","m":"SYSMEX","o":"CA-600 SERIES 620","r":"25315","i":"7605/CHP/TATA"},{"s":"LABORATOIRE","e":"DISTILATEUR","m":"LAUDA","o":"PD8D","r":"","i":"7602/CHP/TATA"},{"s":"LABORATOIRE","e":"","m":"","o":"PD8D","r":"","i":"7603/CHP/TATA"},{"s":"LABORATOIRE","e":"MICROSCOPE","m":"OLYMPUS","o":"BX53","r":"3C50036","i":"7604/CHP/TATA"},{"s":"LABORATOIRE","e":"REFREGIRATEUR PROFESSIONNELLE SCIENTIFIQUE  700L","m":"EMSAS","o":"EKT-725","r":"23062025M109202","i":"7656/CHP/TATA"},{"s":"LABORATOIRE","e":"","m":"","o":"","r":"23062025M109187","i":"7657/CHP/TATA"},{"s":"LABORATOIRE","e":"","m":"","o":"","r":"23062025M109197","i":"7658/CHP/TATA"},{"s":"LABORATOIRE","e":"","m":"","o":"","r":"23062025M109191","i":"7659/CHP/TATA"},{"s":"LABORATOIRE","e":"ANALYSEUR DE HEMATOLOGY","m":"B&E","o":"Hemax 330","r":"H3B454403","i":""},{"s":"LABORATOIRE","e":"ANALYSEUR DE BIOCHIMIE","m":"MINDRAY","o":"BS-430","r":"YW-4B010625","i":"7704/CHP/TATA"}];
+window.SVCS=[
+{id:"radiologie",label:"Radiologie",icon:"\uD83D\uDD2C",dbKey:"RADIOLOGIE"},
+{id:"urgences",label:"Urgences",icon:"\uD83D\uDE91",dbKey:"URGENCE"},
+{id:"reanimation",label:"R\u00e9animation",icon:"\uD83D\uDC89",dbKey:"REANIMATION"},
+{id:"laboratoire",label:"Laboratoire",icon:"\uD83E\uDDEA",dbKey:"LABORATOIRE"},
+{id:"bloc",label:"Bloc op\u00e9ratoire",icon:"\uD83C\uDFE5",dbKey:"BLOC OPERATOIRE"},
+{id:"mere_enfant",label:"M\u00e8re et Enfant",icon:"\uD83D\uDC76",dbKey:"SERVICE MERE ET ENFANT"},
+{id:"medecine",label:"M\u00e9decine et R\u00e9\u00e9ducation",icon:"\uD83E\uDE7A",dbKey:"MEDECINE"},
+{id:"hemodialyse",label:"H\u00e9modialyse",icon:"\uD83D\uDCA7",dbKey:"HEMDIALYSE"},
+{id:"dentaire",label:"Service Dentaire",icon:"\uD83E\uDDB7",dbKey:"DENTAIRE"}
+];
+window.SKS=["BLOC OPERATOIRE","HEMDIALYSE","REANIMATION","MEDECINE","DENTAIRE","SERVICE MERE ET ENFANT","RADIOLOGIE","URGENCE","LABORATOIRE"];
+window.STL={soumise:"Soumise",en_cours:"En cours",validee:"Valid\u00e9e",livree:"Livr\u00e9e",rejetee:"Rejet\u00e9e",en_attente:"En attente",resolue:"R\u00e9solue"};
+</script>
+<script type="text/babel" data-presets="react">
+const {useState, useMemo, useRef, useEffect} = React;
+
+// ─── STORAGE LAYER: Firebase if configured, else localStorage ───
+function usePersistedState(key, initial) {
+  var [val, setVal] = useState(function() {
+    if (!window.firebaseReady) {
+      try { var s = localStorage.getItem("chp_"+key); if(s) return JSON.parse(s); } catch(e){}
+    }
+    return initial;
+  });
+  var [loaded, setLoaded] = useState(!window.firebaseReady);
+
+  useEffect(function() {
+    if (window.firebaseReady) {
+      return window.fbListen(key, function(data) {
+        if (data !== null) { setVal(data); }
+        else if (!loaded) { window.fbWrite(key, initial); setVal(initial); }
+        setLoaded(true);
+      });
+    }
+  }, []);
+
+  function update(newVal) {
+    var v = typeof newVal === "function" ? newVal(val) : newVal;
+    setVal(v);
+    if (window.firebaseReady) { window.fbWrite(key, v); }
+    else { try { localStorage.setItem("chp_"+key, JSON.stringify(v)); } catch(e){} }
+  }
+  return [val, update, loaded];
+}
+
+function EqSearch(props) {
+  var [q, setQ] = useState("");
+  var [open, setOpen] = useState(false);
+  var [sel, setSel] = useState(null);
+  var ref = useRef(null);
+  useEffect(function(){ function h(e){if(ref.current&&!ref.current.contains(e.target))setOpen(false)} document.addEventListener("mousedown",h); return function(){document.removeEventListener("mousedown",h)} },[]);
+  var dbKey = props.selSvc ? (window.SVCS.find(function(x){return x.id===props.selSvc})||{}).dbKey : null;
+  var res = useMemo(function(){ if(!q||q.length<2)return[]; var lo=q.toLowerCase(); return props.db.filter(function(eq){ if(dbKey&&eq.s!==dbKey)return false; if(!eq.e&&!eq.i)return false; return[eq.e,eq.i,eq.m,eq.o,eq.r].some(function(f){return f&&f.toLowerCase().indexOf(lo)>=0}) }).slice(0,12) },[q,dbKey,props.db]);
+  return (
+    <div ref={ref} className="sw">
+      <div style={{position:"relative"}}><span className="sic">🔍</span>
+        <input className="sin" placeholder={dbKey?"Tapez nom, N° inventaire, marque...":"Sélectionnez d'abord un service"} value={q} disabled={!dbKey}
+          onChange={function(e){setQ(e.target.value);setOpen(true);setSel(null);if(props.onPick)props.onPick(null)}}
+          onFocus={function(){if(q.length>=2)setOpen(true)}} />
+        {sel&&<button className="scl" onClick={function(){setSel(null);setQ("");if(props.onPick)props.onPick(null)}}>✕</button>}
+      </div>
+      {open&&res.length>0&&<div className="dd">{res.map(function(eq,i){ return <div key={i} className="di" onClick={function(){setSel(eq);setQ(eq.e||eq.i||"");setOpen(false);if(props.onPick)props.onPick(eq)}}><div className="dn">{eq.e||"(sans désignation)"}</div><div className="dm">{eq.m&&<span>📌 {eq.m}</span>}{eq.o&&<span>🔧 {eq.o}</span>}{eq.i&&<span className="dv">📋 {eq.i}</span>}</div></div> })}</div>}
+      {open&&q.length>=2&&res.length===0&&<div className="dd"><div className="de">Aucun équipement trouvé</div></div>}
+      {sel&&<div className="es"><div className="et">✓ Équipement sélectionné</div><div className="eg">
+        <div><span className="ek">Désignation: </span><span className="ev">{sel.e||"—"}</span></div>
+        <div><span className="ek">Marque: </span><span className="ev">{sel.m||"—"}</span></div>
+        <div><span className="ek">Modèle: </span><span className="ev">{sel.o||"—"}</span></div>
+        <div><span className="ek">N° Série: </span><span className="ev">{sel.r||"—"}</span></div>
+        <div><span className="ek">N° Inventaire: </span><span className="ev eh">{sel.i||"—"}</span></div>
+        <div><span className="ek">Service: </span><span className="ev">{sel.s}</span></div>
+      </div></div>}
+    </div>
+  );
+}
+
+function SuiviPage(props) {
+  var isPanne=props.isPanne; var raw=isPanne?props.pans:props.dems;
+  var [detail,setDetail]=useState(null);
+  var data=raw.filter(function(d){return(props.fSvc==="all"||d.service===props.fSvc)&&(props.fSt==="all"||d.statut===props.fSt)});
+  var allSts=isPanne?["en_attente","en_cours","resolue"]:["soumise","en_cours","validee","livree","rejetee"];
+  var stats={}; raw.forEach(function(d){stats[d.service]=(stats[d.service]||0)+1});
+  function doExport(list,fname,title){
+    var wb=XLSX.utils.book_new();
+    var svFilter=props.fSvc!=="all"?(window.SVCS.find(function(x){return x.id===props.fSvc})||{}).label:"Tous les services";
+    var header=[
+      ["Centre Hospitalier Provincial de Tata — CHP Tata"],
+      ["Ministère de la Santé et de la Protection Sociale"],
+      [""],
+      [title || (isPanne?"Suivi des Pannes":"Suivi des Demandes d'Équipement")],
+      ["Service: "+svFilter,"","","Date d'export: "+new Date().toISOString().slice(0,10)],
+      ["Total: "+list.length+" enregistrement(s)"],
+      [""]
+    ];
+    var cols,rows;
+    if(isPanne){
+      cols=["Référence","Date","Service","Équipement","Marque","Modèle","N° Série","N° Inventaire","Description Panne","Priorité","Statut","Signaleur"];
+      rows=list.map(function(d){ var sv=window.SVCS.find(function(x){return x.id===d.service}); return[d.id,d.date,sv?sv.label:d.service,d.eq,d.eqMarque||"",d.eqModel||"",d.eqSerie||"",d.eqInv||"",d.panne||"",d.urg,window.STL[d.statut]||d.statut,d.who||""] });
+    } else {
+      cols=["Référence","Date","Service","Équipement","Marque / Modèle","Quantité","Type Demande","Justification","Caractéristiques Techniques","Accessoires Requis","Urgence","Statut","Demandeur"];
+      rows=list.map(function(d){ var sv=window.SVCS.find(function(x){return x.id===d.service}); return[d.id,d.date,sv?sv.label:d.service,d.eq,d.marque||"",d.qte||"1",d.type||"",d.justif||"",d.tech||"",d.access||"",d.urg,window.STL[d.statut]||d.statut,d.who||""] });
+    }
+    var sheetData=header.concat([cols]).concat(rows);
+    var ws=XLSX.utils.aoa_to_sheet(sheetData);
+    var colCount=cols.length;
+    ws["!merges"]=[{s:{r:0,c:0},e:{r:0,c:colCount-1}},{s:{r:1,c:0},e:{r:1,c:colCount-1}},{s:{r:3,c:0},e:{r:3,c:colCount-1}},{s:{r:5,c:0},e:{r:5,c:colCount-1}}];
+    ws["!cols"]=cols.map(function(c){return{wch:c.length<12?16:c.length+4}});
+    XLSX.utils.book_append_sheet(wb,ws,"Suivi");
+    XLSX.writeFile(wb,fname);
+  }
+  function svLabel(svcId){var sv=window.SVCS.find(function(x){return x.id===svcId});return sv?sv.label:svcId}
+  var svFilterLabel=props.fSvc!=="all"?(window.SVCS.find(function(x){return x.id===props.fSvc})||{}).label:null;
+  var exportTitle=isPanne?"Suivi des Pannes":"Suivi des Demandes";
+  if(svFilterLabel) exportTitle+=" — "+svFilterLabel;
+  return (
+    <div>
+      <div className="ph"><span className={"pb "+(isPanne?"pb-r":"pb-b")}>{isPanne?"🔧 Suivi des pannes":"📋 Suivi des demandes"}</span><h2>{isPanne?"Pannes signalées":"Demandes d'équipement"}</h2></div>
+      <div className="ab">
+        <button className="pr" onClick={function(){doExport(data,isPanne?"Suivi_Pannes_CHP_Tata.xlsx":"Suivi_Demandes_CHP_Tata.xlsx",exportTitle)}}>📥 Télécharger Excel ({data.length})</button>
+        {props.isBio && <button onClick={function(){doExport(raw,isPanne?"Pannes_COMPLET_CHP_Tata.xlsx":"Demandes_COMPLET_CHP_Tata.xlsx")}}>📊 Export complet ({raw.length})</button>}
+      </div>
+      <div className="cd"><div className="st">Répartition par service</div><div className="stg">
+        {window.SVCS.filter(function(s){return stats[s.id]}).map(function(s){ return <div key={s.id} className={"stc"+(props.fSvc===s.id?" ac":"")} onClick={function(){props.setFSvc(props.fSvc===s.id?"all":s.id)}}><div style={{fontSize:"20px"}}>{s.icon}</div><div className="stn">{stats[s.id]}</div><div className="stl">{s.label}</div></div> })}
+        <div className={"stc"+(props.fSvc==="all"?" ac":"")} onClick={function(){props.setFSvc("all")}}><div style={{fontSize:"20px"}}>📊</div><div className="stn">{raw.length}</div><div className="stl">Total</div></div>
+      </div></div>
+      <div className="fb">
+        <select className="fs" value={props.fSvc} onChange={function(e){props.setFSvc(e.target.value)}}><option value="all">Tous les services</option>{window.SVCS.map(function(s){return <option key={s.id} value={s.id}>{s.label}</option>})}</select>
+        <select className="fs" value={props.fSt} onChange={function(e){props.setFSt(e.target.value)}}><option value="all">Tous les statuts</option>{allSts.map(function(s){return <option key={s} value={s}>{window.STL[s]}</option>})}</select>
+        <span style={{fontSize:"12px",color:"var(--text3)"}}>{data.length} résultat(s) — cliquez sur une ligne pour voir les détails</span>
+      </div>
+      <div className="tw"><table><thead><tr><th>Réf</th><th>Date</th><th>Service</th><th>Équipement</th><th>{isPanne?"Panne":"Marque"}</th><th>Statut</th><th>{isPanne?"Priorité":"Urgence"}</th>{props.isBio && <th>Actions</th>}</tr></thead><tbody>
+        {data.map(function(d){ var sv=window.SVCS.find(function(x){return x.id===d.service}); return <tr key={d.id} className="clickable" onClick={function(){setDetail(d)}}>
+          <td><span style={{fontWeight:700,color:"var(--green)",fontSize:"12px",fontFamily:"monospace"}}>{d.id}</span></td>
+          <td>{d.date}</td><td>{sv?sv.icon:""} {sv?sv.label:""}</td>
+          <td style={{fontWeight:600,color:"var(--text)"}}>{d.eq}</td>
+          <td>{isPanne?d.panne:d.marque}</td>
+          <td><span className={"pb "+(d.statut==="soumise"?"pb-b":d.statut==="en_cours"||d.statut==="en_attente"?"":"validee resolue".indexOf(d.statut)>=0?"pb-g":d.statut==="livree"?"pb-p":"pb-r")} style={{background:d.statut==="en_cours"||d.statut==="en_attente"?"var(--amber2)":"",color:d.statut==="en_cours"||d.statut==="en_attente"?"var(--amber)":""}}>{window.STL[d.statut]}</span></td>
+          <td><span style={{fontWeight:700,fontSize:"12px",color:d.urg==="Critique"?"var(--red)":d.urg==="Urgente"?"var(--amber)":"var(--text3)"}}>● {d.urg}</span></td>
+          {props.isBio && <td style={{display:"flex",gap:"6px",alignItems:"center"}} onClick={function(e){e.stopPropagation()}}>
+            <select className="fs" style={{fontSize:"11px",padding:"4px 6px"}} value={d.statut} onChange={function(e){props.chgSt(d.id,e.target.value)}}>{allSts.map(function(s){return <option key={s} value={s}>{window.STL[s]}</option>})}</select>
+            <button style={{padding:"4px 8px",fontSize:"11px",border:"1px solid var(--border)",background:"var(--bg)",color:"var(--red)",borderRadius:"6px",cursor:"pointer",fontFamily:"inherit"}} onClick={function(){if(confirm("Supprimer "+d.id+" ?"))props.delItem(d.id)}}>🗑️</button>
+          </td>}
+        </tr> })}
+        {data.length===0&&<tr><td colSpan={props.isBio?8:7} style={{textAlign:"center",color:"var(--text3)",padding:"40px"}}>Aucun résultat</td></tr>}
+      </tbody></table></div>
+
+      {detail && <div className="det-overlay" onClick={function(e){if(e.target===e.currentTarget)setDetail(null)}}>
+        <div className="det-box">
+          <h3>{isPanne?"🔧":"📋"} {detail.id} — Détails complets</h3>
+          <div className="det-grid">
+            <div className="det-item"><div className="det-label">Référence</div><div className="det-val green">{detail.id}</div></div>
+            <div className="det-item"><div className="det-label">Date</div><div className="det-val">{detail.date}</div></div>
+            <div className="det-item"><div className="det-label">Service</div><div className="det-val">{svLabel(detail.service)}</div></div>
+            <div className="det-item"><div className="det-label">{isPanne?"Signaleur":"Demandeur"}</div><div className="det-val">{detail.who||"—"}</div></div>
+            <div className="det-item"><div className="det-label">Équipement</div><div className="det-val">{detail.eq||"—"}</div></div>
+            <div className="det-item"><div className="det-label">Statut</div><div className="det-val">{window.STL[detail.statut]||detail.statut}</div></div>
+            <div className="det-item"><div className="det-label">{isPanne?"Priorité":"Urgence"}</div><div className="det-val" style={{color:detail.urg==="Critique"?"var(--red)":detail.urg==="Urgente"?"var(--amber)":"var(--text3)"}}>● {detail.urg}</div></div>
+
+            {!isPanne && <div className="det-item"><div className="det-label">Marque / Modèle</div><div className={detail.marque?"det-val":"det-val empty"}>{detail.marque||"Non spécifié"}</div></div>}
+            {!isPanne && <div className="det-item"><div className="det-label">Quantité</div><div className="det-val">{detail.qte||"1"}</div></div>}
+            {!isPanne && <div className="det-item"><div className="det-label">Type de demande</div><div className={detail.type?"det-val":"det-val empty"}>{detail.type||"Non spécifié"}</div></div>}
+            {!isPanne && <div className="det-item full"><div className="det-label">Justification / Description du besoin</div><div className={detail.justif?"det-val":"det-val empty"}>{detail.justif||"Non renseigné"}</div></div>}
+            {!isPanne && <div className="det-item full"><div className="det-label">Caractéristiques techniques</div><div className={detail.tech?"det-val":"det-val empty"}>{detail.tech||"Non renseigné"}</div></div>}
+            {!isPanne && <div className="det-item full"><div className="det-label">Accessoires requis</div><div className={detail.access?"det-val":"det-val empty"}>{detail.access||"Non renseigné"}</div></div>}
+
+            {isPanne && <div className="det-item"><div className="det-label">Marque équipement</div><div className={detail.eqMarque?"det-val":"det-val empty"}>{detail.eqMarque||"—"}</div></div>}
+            {isPanne && <div className="det-item"><div className="det-label">Modèle</div><div className={detail.eqModel?"det-val":"det-val empty"}>{detail.eqModel||"—"}</div></div>}
+            {isPanne && <div className="det-item"><div className="det-label">N° Série</div><div className={detail.eqSerie?"det-val":"det-val empty"}>{detail.eqSerie||"—"}</div></div>}
+            {isPanne && <div className="det-item"><div className="det-label">N° Inventaire</div><div className="det-val green">{detail.eqInv||"—"}</div></div>}
+            {isPanne && <div className="det-item full"><div className="det-label">Description de la panne</div><div className={detail.panne?"det-val":"det-val empty"}>{detail.panne||"Non renseigné"}</div></div>}
+          </div>
+          <div style={{textAlign:"center"}}><button className="det-close" onClick={function(){setDetail(null)}}>Fermer</button></div>
+        </div>
+      </div>}
+    </div>
+  );
+}
+
+function SuiviReforme(props) {
+  var [detail,setDetail]=useState(null);
+  var raw=props.refs;
+  var data=raw.filter(function(d){return(props.fSvc==="all"||d.service===props.fSvc)&&(props.fSt==="all"||d.statut===props.fSt)});
+  var allSts=["soumise","en_cours","validee","rejetee"];
+  var stats={}; raw.forEach(function(d){stats[d.service]=(stats[d.service]||0)+1});
+  function doExport(list,fname,title){
+    var wb=XLSX.utils.book_new();
+    var svFilter=props.fSvc!=="all"?(window.SVCS.find(function(x){return x.id===props.fSvc})||{}).label:"Tous les services";
+    var header=[
+      ["Centre Hospitalier Provincial de Tata — CHP Tata"],
+      ["Ministère de la Santé et de la Protection Sociale"],
+      [""],
+      [title||"Suivi des Réformes d'Équipement"],
+      ["Service: "+svFilter,"","","Date d'export: "+new Date().toISOString().slice(0,10)],
+      ["Total: "+list.length+" enregistrement(s)"],
+      [""]
+    ];
+    var cols=["Référence","Date","Service","Équipement","Marque","Modèle","N° Série","N° Inventaire","Motif de Réforme","Statut","Demandeur"];
+    var rows=list.map(function(d){ var sv=window.SVCS.find(function(x){return x.id===d.service}); return[d.id,d.date,sv?sv.label:d.service,d.eq,d.eqMarque||"",d.eqModel||"",d.eqSerie||"",d.eqInv||"",d.motif||"",window.STL[d.statut]||d.statut,d.who||""] });
+    var sheetData=header.concat([cols]).concat(rows);
+    var ws=XLSX.utils.aoa_to_sheet(sheetData);
+    ws["!merges"]=[{s:{r:0,c:0},e:{r:0,c:cols.length-1}},{s:{r:1,c:0},e:{r:1,c:cols.length-1}},{s:{r:3,c:0},e:{r:3,c:cols.length-1}},{s:{r:5,c:0},e:{r:5,c:cols.length-1}}];
+    ws["!cols"]=cols.map(function(c){return{wch:c.length<12?16:c.length+4}});
+    XLSX.utils.book_append_sheet(wb,ws,"Reformes");
+    XLSX.writeFile(wb,fname);
+  }
+  function svLabel(svcId){var sv=window.SVCS.find(function(x){return x.id===svcId});return sv?sv.label:svcId}
+  var svFilterLabel=props.fSvc!=="all"?(window.SVCS.find(function(x){return x.id===props.fSvc})||{}).label:null;
+  var exportTitle="Suivi des Réformes";
+  if(svFilterLabel) exportTitle+=" — "+svFilterLabel;
+  return (
+    <div>
+      <div className="ph"><span className="pb pb-p">♻️ Suivi des réformes</span><h2>Équipements à réformer</h2></div>
+      <div className="ab">
+        <button className="pr" onClick={function(){doExport(data,"Suivi_Reformes_CHP_Tata.xlsx",exportTitle)}}>📥 Télécharger Excel ({data.length})</button>
+        {props.isBio && <button onClick={function(){doExport(raw,"Reformes_COMPLET_CHP_Tata.xlsx")}}>📊 Export complet ({raw.length})</button>}
+      </div>
+      <div className="cd"><div className="st">Répartition par service</div><div className="stg">
+        {window.SVCS.filter(function(s){return stats[s.id]}).map(function(s){ return <div key={s.id} className={"stc"+(props.fSvc===s.id?" ac":"")} onClick={function(){props.setFSvc(props.fSvc===s.id?"all":s.id)}}><div style={{fontSize:"20px"}}>{s.icon}</div><div className="stn">{stats[s.id]}</div><div className="stl">{s.label}</div></div> })}
+        <div className={"stc"+(props.fSvc==="all"?" ac":"")} onClick={function(){props.setFSvc("all")}}><div style={{fontSize:"20px"}}>📊</div><div className="stn">{raw.length}</div><div className="stl">Total</div></div>
+      </div></div>
+      <div className="fb">
+        <select className="fs" value={props.fSvc} onChange={function(e){props.setFSvc(e.target.value)}}><option value="all">Tous les services</option>{window.SVCS.map(function(s){return <option key={s.id} value={s.id}>{s.label}</option>})}</select>
+        <select className="fs" value={props.fSt} onChange={function(e){props.setFSt(e.target.value)}}><option value="all">Tous les statuts</option>{allSts.map(function(s){return <option key={s} value={s}>{window.STL[s]}</option>})}</select>
+        <span style={{fontSize:"12px",color:"var(--text3)"}}>{data.length} résultat(s)</span>
+      </div>
+      <div className="tw"><table><thead><tr><th>Réf</th><th>Date</th><th>Service</th><th>Équipement</th><th>Motif</th><th>Statut</th>{props.isBio&&<th>Actions</th>}</tr></thead><tbody>
+        {data.map(function(d){ var sv=window.SVCS.find(function(x){return x.id===d.service}); return <tr key={d.id} className="clickable" onClick={function(){setDetail(d)}}>
+          <td><span style={{fontWeight:700,color:"#a78bfa",fontSize:"12px",fontFamily:"monospace"}}>{d.id}</span></td>
+          <td>{d.date}</td><td>{sv?sv.icon:""} {sv?sv.label:""}</td>
+          <td style={{fontWeight:600,color:"var(--text)"}}>{d.eq}</td>
+          <td style={{maxWidth:"200px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{d.motif}</td>
+          <td><span className={"pb "+(d.statut==="soumise"?"pb-b":d.statut==="validee"?"pb-g":d.statut==="rejetee"?"pb-r":"")} style={{background:d.statut==="en_cours"?"var(--amber2)":"",color:d.statut==="en_cours"?"var(--amber)":""}}>{window.STL[d.statut]||d.statut}</span></td>
+          {props.isBio&&<td style={{display:"flex",gap:"6px",alignItems:"center"}} onClick={function(e){e.stopPropagation()}}>
+            <select className="fs" style={{fontSize:"11px",padding:"4px 6px"}} value={d.statut} onChange={function(e){props.chgSt(d.id,e.target.value)}}>{allSts.map(function(s){return <option key={s} value={s}>{window.STL[s]}</option>})}</select>
+            <button style={{padding:"4px 8px",fontSize:"11px",border:"1px solid var(--border)",background:"var(--bg)",color:"var(--red)",borderRadius:"6px",cursor:"pointer",fontFamily:"inherit"}} onClick={function(){if(confirm("Supprimer "+d.id+" ?"))props.delItem(d.id)}}>🗑️</button>
+          </td>}
+        </tr> })}
+        {data.length===0&&<tr><td colSpan={props.isBio?7:6} style={{textAlign:"center",color:"var(--text3)",padding:"40px"}}>Aucun résultat</td></tr>}
+      </tbody></table></div>
+      {detail && <div className="det-overlay" onClick={function(e){if(e.target===e.currentTarget)setDetail(null)}}>
+        <div className="det-box">
+          <h3>♻️ {detail.id} — Détails réforme</h3>
+          <div className="det-grid">
+            <div className="det-item"><div className="det-label">Référence</div><div className="det-val" style={{color:"#a78bfa"}}>{detail.id}</div></div>
+            <div className="det-item"><div className="det-label">Date</div><div className="det-val">{detail.date}</div></div>
+            <div className="det-item"><div className="det-label">Service</div><div className="det-val">{svLabel(detail.service)}</div></div>
+            <div className="det-item"><div className="det-label">Demandeur</div><div className="det-val">{detail.who||"—"}</div></div>
+            <div className="det-item"><div className="det-label">Équipement</div><div className="det-val">{detail.eq||"—"}</div></div>
+            <div className="det-item"><div className="det-label">Statut</div><div className="det-val">{window.STL[detail.statut]||detail.statut}</div></div>
+            <div className="det-item"><div className="det-label">Marque</div><div className={detail.eqMarque?"det-val":"det-val empty"}>{detail.eqMarque||"—"}</div></div>
+            <div className="det-item"><div className="det-label">Modèle</div><div className={detail.eqModel?"det-val":"det-val empty"}>{detail.eqModel||"—"}</div></div>
+            <div className="det-item"><div className="det-label">N° Série</div><div className={detail.eqSerie?"det-val":"det-val empty"}>{detail.eqSerie||"—"}</div></div>
+            <div className="det-item"><div className="det-label">N° Inventaire</div><div className="det-val green">{detail.eqInv||"—"}</div></div>
+            <div className="det-item full"><div className="det-label">Motif de la réforme</div><div className={detail.motif?"det-val":"det-val empty"}>{detail.motif||"Non renseigné"}</div></div>
+          </div>
+          <div style={{textAlign:"center"}}><button className="det-close" onClick={function(){setDetail(null)}}>Fermer</button></div>
+        </div>
+      </div>}
+    </div>
+  );
+}
+
+function App() {
+  var [user,setUser]=useState(null);
+  var [lu,setLu]=useState(""); var [lp,setLp]=useState(""); var [lerr,setLerr]=useState("");
+  var [page,setPage]=useState("demande");
+  var [svc,setSvc]=useState(null); var [urgLvl,setUrgLvl]=useState("Normale");
+  var [fSvc,setFSvc]=useState("all"); var [fSt,setFSt]=useState("all");
+  var [ok,setOk]=useState(false);
+  var [modal,setModal]=useState(null); var [editEq,setEditEq]=useState(null); var [eqFilter,setEqFilter]=useState("");
+
+  // Persisted state (Firebase or localStorage)
+  var [eqDb,setEqDb,eqLoaded]=usePersistedState("equipment", window.INIT_EQ);
+  var [dems,setDems,demLoaded]=usePersistedState("demandes", []);
+  var [pans,setPans,panLoaded]=usePersistedState("pannes", []);
+  var [refs,setRefs,refLoaded]=usePersistedState("reformes", []);
+  var [counter,setCounter,cntLoaded]=usePersistedState("counter", {dem:0,pan:0,ref:0});
+
+  // Form states
+  var [fNom,setFNom]=useState(""); var [fFunc,setFFunc]=useState(""); var [fDesig,setFDesig]=useState("");
+  var [fQte,setFQte]=useState("1"); var [fType,setFType]=useState(""); var [fMarque,setFMarque]=useState("");
+  var [fJustif,setFJustif]=useState(""); var [fTech,setFTech]=useState(""); var [fAccess,setFAccess]=useState("");
+  var [pNom,setPNom]=useState(""); var [pFunc,setPFunc]=useState(""); var [pDesc,setPDesc]=useState(""); var [pSelEq,setPSelEq]=useState(null);
+  var [rNom,setRNom]=useState(""); var [rFunc,setRFunc]=useState(""); var [rMotif,setRMotif]=useState(""); var [rSelEq,setRSelEq]=useState(null);
+
+  var isBio=user&&user.role==="biomed";
+  var allLoaded=eqLoaded&&demLoaded&&panLoaded&&refLoaded&&cntLoaded;
+
+  function doLogin(){ if(lu.toLowerCase()==="biomed"&&lp==="chptata2026"){setUser({role:"biomed",name:"Service Biomédical"});setLerr("")}else{setLerr("Identifiant ou mot de passe incorrect")} }
+  function navTo(p){setPage(p);setFSvc("all");setFSt("all");window.scrollTo({top:0})}
+
+  function submitDemande(){
+    if(!svc||!fNom||!fDesig){alert("Veuillez remplir le service, le nom et la désignation.");return}
+    var nc=Object.assign({},counter,{dem:counter.dem+1}); setCounter(nc);
+    var id="DEM-2026-"+String(nc.dem).padStart(3,"0");
+    var today=new Date().toISOString().slice(0,10);
+    setDems(dems.concat([{id:id,service:svc,eq:fDesig,marque:fMarque,statut:"soumise",urg:urgLvl,date:today,who:fNom+" ("+fFunc+")",qte:fQte,type:fType,justif:fJustif,tech:fTech,access:fAccess}]));
+    var svName=(window.SVCS.find(function(x){return x.id===svc})||{}).label||svc;
+    window.sendNotif("Nouvelle demande d'équipement", {id:id,date:today,serviceName:svName,eq:fDesig,desc:fJustif,urg:urgLvl,who:fNom+" ("+fFunc+")",marque:fMarque});
+    setOk(true);setTimeout(function(){setOk(false)},3000);
+    setFNom("");setFFunc("");setFDesig("");setFQte("1");setFType("");setFMarque("");setFJustif("");setFTech("");setFAccess("");setUrgLvl("Normale");setSvc(null);
+    window.scrollTo({top:0});
+  }
+  function submitPanne(){
+    if(!svc||!pNom||!pSelEq){alert("Veuillez remplir le service, le nom et sélectionner un équipement.");return}
+    var nc=Object.assign({},counter,{pan:counter.pan+1}); setCounter(nc);
+    var id="PAN-2026-"+String(nc.pan).padStart(3,"0");
+    var today=new Date().toISOString().slice(0,10);
+    setPans(pans.concat([{id:id,service:svc,eq:pSelEq.e||pSelEq.i||"Inconnu",panne:pDesc||"Non précisée",statut:"en_attente",urg:urgLvl,date:today,who:pNom+" ("+pFunc+")",eqMarque:pSelEq.m||"",eqModel:pSelEq.o||"",eqSerie:pSelEq.r||"",eqInv:pSelEq.i||"",eqService:pSelEq.s||""}]));
+    var svName=(window.SVCS.find(function(x){return x.id===svc})||{}).label||svc;
+    window.sendNotif("Signalement de panne", {id:id,date:today,serviceName:svName,eq:pSelEq.e||pSelEq.i||"Inconnu",desc:pDesc||"Non précisée",urg:urgLvl,who:pNom+" ("+pFunc+")"});
+    setOk(true);setTimeout(function(){setOk(false)},3000);
+    setPNom("");setPFunc("");setPDesc("");setPSelEq(null);setUrgLvl("Normale");setSvc(null);
+    window.scrollTo({top:0});
+  }
+  function submitReforme(){
+    if(!svc||!rNom||!rSelEq){alert("Veuillez remplir le service, le nom et sélectionner un équipement.");return}
+    var nc=Object.assign({},counter,{ref:(counter.ref||0)+1}); setCounter(nc);
+    var id="REF-2026-"+String(nc.ref).padStart(3,"0");
+    var today=new Date().toISOString().slice(0,10);
+    setRefs(refs.concat([{id:id,service:svc,eq:rSelEq.e||rSelEq.i||"Inconnu",motif:rMotif||"Non précisé",statut:"soumise",date:today,who:rNom+" ("+rFunc+")",eqMarque:rSelEq.m||"",eqModel:rSelEq.o||"",eqSerie:rSelEq.r||"",eqInv:rSelEq.i||"",eqService:rSelEq.s||""}]));
+    var svName=(window.SVCS.find(function(x){return x.id===svc})||{}).label||svc;
+    window.sendNotif("Demande de réforme", {id:id,date:today,serviceName:svName,eq:rSelEq.e||rSelEq.i||"Inconnu",desc:rMotif||"Non précisé",urg:"Normale",who:rNom+" ("+rFunc+")"});
+    setOk(true);setTimeout(function(){setOk(false)},3000);
+    setRNom("");setRFunc("");setRMotif("");setRSelEq(null);setSvc(null);
+    window.scrollTo({top:0});
+  }
+  function saveEq(){
+    if(!editEq)return; var obj={s:editEq.s,e:editEq.e,m:editEq.m,o:editEq.o,r:editEq.r,i:editEq.i};
+    if(editEq._idx!==undefined){var n=eqDb.slice();n[editEq._idx]=obj;setEqDb(n)}else{setEqDb(eqDb.concat([obj]))}
+    setModal(null);setEditEq(null);
+  }
+  var filtEq=useMemo(function(){if(!eqFilter)return eqDb;var lo=eqFilter.toLowerCase();return eqDb.filter(function(eq){return[eq.s,eq.e,eq.m,eq.o,eq.r,eq.i].some(function(f){return f&&f.toLowerCase().indexOf(lo)>=0})})},[eqDb,eqFilter]);
+  var urgCls=function(u){if(urgLvl!==u)return"ub";if(u==="Normale")return"ub ag";if(u==="Urgente")return"ub aa";return"ub ar"};
+  var noFb=!window.firebaseReady;
+
+  // LOGIN
+  if(!user) return (
+    <div className="login-wrap"><div className="login-box">
+      <div className="logo-big">⊕</div><h1>Portail Biomédical</h1><div className="sub">CHP Tata — Authentification</div>
+      <input className="lf" placeholder="Identifiant" value={lu} onChange={function(e){setLu(e.target.value)}} onKeyDown={function(e){if(e.key==="Enter")doLogin()}} />
+      <input className="lf" type="password" placeholder="Mot de passe" value={lp} onChange={function(e){setLp(e.target.value)}} onKeyDown={function(e){if(e.key==="Enter")doLogin()}} />
+      <button className="lb" onClick={doLogin}>🔒 Connexion Biomédical</button>
+      {lerr&&<div className="lerr">{lerr}</div>}
+      <div style={{margin:"20px 0",color:"var(--text3)",fontSize:"12px"}}>— ou —</div>
+      <button className="lb2" onClick={function(){setUser({role:"service",name:"Utilisateur Service"})}}>👤 Accès Service (sans compte)</button>
+      <div className="lhint"><b>Biomédical :</b> accès complet<br/><b>Service :</b> formulaires uniquement</div>
+      {noFb&&<div style={{marginTop:"16px",padding:"10px",borderRadius:"8px",background:"var(--amber2)",color:"var(--amber)",fontSize:"11px"}}>⚠ Firebase non configuré — données stockées localement dans ce navigateur</div>}
+      {!window.emailReady&&<div style={{marginTop:"8px",padding:"10px",borderRadius:"8px",background:"var(--blue2)",color:"var(--blue)",fontSize:"11px"}}>📧 EmailJS non configuré — pas de notifications email</div>}
+    </div></div>
+  );
+
+  if(!allLoaded) return <div className="loading"><div className="spin"></div><div>Chargement des données...</div></div>;
+
+  var navItems=[{id:"demande",label:"Nouvelle demande",ic:"＋"},{id:"panne",label:"Signaler panne",ic:"⚠"},{id:"reforme",label:"Réforme",ic:"♻️"}];
+  navItems.push({id:"suivi_demandes",label:"Suivi demandes"+(isBio?" ("+dems.length+")":""),ic:"📋"});
+  navItems.push({id:"suivi_pannes",label:"Suivi pannes"+(isBio?" ("+pans.length+")":""),ic:"🔧"});
+  navItems.push({id:"suivi_reformes",label:"Suivi réformes"+(isBio?" ("+refs.length+")":""),ic:"♻️"});
+  if(isBio){navItems.push({id:"inventaire",label:"Inventaire",ic:"🗄️"})}
+
+  return (
+    <div>
+      <header className="hdr">
+        <div className="logo"><div className="logo-ic">⊕</div><div><div style={{fontWeight:700,fontSize:"15px"}}>Portail Biomédical</div><div style={{fontSize:"11px",color:"var(--text3)"}}>CHP Tata {window.firebaseReady?"🟢 En ligne":"🟡 Local"}</div></div></div>
+        <div className="hdr-r">
+          <nav className="nav">{navItems.map(function(n){return <button key={n.id} className={"nb"+(page===n.id?" ac":"")} onClick={function(){navTo(n.id)}}>{n.ic} {n.label}</button>})}</nav>
+          <div className="ui"><span className="rl">{isBio?"🔧 Biomédical":"👤 Service"}</span><span>{user.name}</span><button className="lo" onClick={function(){setUser(null);setLu("");setLp("");setPage("demande")}}>Déconnexion</button></div>
+        </div>
+      </header>
+      <main className="mn">
+        {noFb&&isBio&&<div className="cfg-banner">⚠ <b>Firebase non configuré</b> — les données sont stockées dans <code>localStorage</code> (ce navigateur uniquement).<br/>Pour synchroniser entre plusieurs appareils, configure Firebase dans le fichier HTML (voir les instructions).</div>}
+
+        {page==="demande"&&<div>
+          <div className="ph"><span className="pb pb-g">● Formulaire de demande</span><h2>Soumettre un besoin en équipement</h2><p>Traitement sous 24h.</p></div>
+          {ok&&<div className="suc">✓ Demande soumise avec succès !</div>}
+          <div className="cd"><div className="st"><span className="sn">1</span> Service</div><div className="sg">{window.SVCS.map(function(s){return <div key={s.id} className={"sb"+(svc===s.id?" ac":"")} onClick={function(){setSvc(s.id)}}><div className="si">{s.icon}</div><div className="sl">{s.label}</div></div>})}</div></div>
+          <div className="cd"><div className="st"><span className="sn">2</span> Identification</div><div className="fg"><div className="fi"><label>Nom</label><input value={fNom} onChange={function(e){setFNom(e.target.value)}} placeholder="Dr. / M. / Mme ..."/></div><div className="fi"><label>Fonction</label><input value={fFunc} onChange={function(e){setFFunc(e.target.value)}} placeholder="Médecin, Infirmier..."/></div></div></div>
+          <div className="cd"><div className="st"><span className="sn">3</span> Équipement demandé</div><div className="fg">
+            <div className="fi"><label>Désignation</label><input value={fDesig} onChange={function(e){setFDesig(e.target.value)}} placeholder="Ex: Ventilateur..."/></div>
+            <div className="fi"><label>Quantité</label><input value={fQte} onChange={function(e){setFQte(e.target.value)}} type="number" placeholder="1"/></div>
+            <div className="fi"><label>Type</label><select value={fType} onChange={function(e){setFType(e.target.value)}}><option value="">-- Sélectionner --</option><option>Acquisition</option><option>Remplacement</option><option>Upgrade</option><option>Location</option></select></div>
+            <div className="fi"><label>Marque / Modèle</label><input value={fMarque} onChange={function(e){setFMarque(e.target.value)}} placeholder="Ex: Mindray..."/></div>
+            <div className="fi ff"><label>Justification</label><textarea value={fJustif} onChange={function(e){setFJustif(e.target.value)}} placeholder="Besoin clinique..."></textarea></div>
+          </div></div>
+          <div className="cd"><div className="st"><span className="sn">4</span> Caractéristiques techniques <span className="ob">Optionnel</span></div><div className="fg">
+            <div className="fi ff"><label>Description technique</label><textarea style={{minHeight:"100px"}} value={fTech} onChange={function(e){setFTech(e.target.value)}} placeholder="Alimentation, puissance, normes, connectivité..."></textarea></div>
+            <div className="fi ff"><label>Accessoires requis</label><textarea value={fAccess} onChange={function(e){setFAccess(e.target.value)}} placeholder="Sondes, câbles, batteries, manuels..."></textarea></div>
+          </div></div>
+          <div className="cd"><div className="st"><span className="sn">5</span> Niveau d'urgence</div><div className="ug">{["Normale","Urgente","Critique"].map(function(u){return <button key={u} className={urgCls(u)} onClick={function(){setUrgLvl(u)}}>{u}</button>})}</div></div>
+          <button className="sbm" onClick={submitDemande}>Soumettre la demande</button>
+        </div>}
+
+        {page==="panne"&&<div>
+          <div className="ph"><span className="pb pb-r">⚠ Signalement de panne</span><h2>Signaler une panne</h2><p>{eqDb.length} équipements dans la base.</p></div>
+          {ok&&<div className="suc">✓ Panne signalée avec succès !</div>}
+          <div className="cd"><div className="st"><span className="sn">1</span> Service</div><div className="sg">{window.SVCS.filter(function(s){return s.dbKey}).map(function(s){var cnt=eqDb.filter(function(eq){return eq.s===s.dbKey}).length;return <div key={s.id} className={"sb"+(svc===s.id?" ac":"")} onClick={function(){setSvc(s.id);setPSelEq(null)}}><div className="si">{s.icon}</div><div className="sl">{s.label}</div><div className="sc">{cnt} éq.</div></div>})}</div></div>
+          <div className="cd"><div className="st"><span className="sn">2</span> Identification</div><div className="fg"><div className="fi"><label>Nom</label><input value={pNom} onChange={function(e){setPNom(e.target.value)}} placeholder="Dr. / M. / Mme ..."/></div><div className="fi"><label>Fonction</label><input value={pFunc} onChange={function(e){setPFunc(e.target.value)}} placeholder="Médecin, Infirmier..."/></div></div></div>
+          <div className="cd"><div className="st"><span className="sn">3</span> Équipement en panne</div><EqSearch selSvc={svc} db={eqDb} onPick={function(eq){setPSelEq(eq)}}/></div>
+          <div className="cd"><div className="st"><span className="sn">4</span> Description de la panne</div><div className="fi"><textarea style={{minHeight:"100px"}} value={pDesc} onChange={function(e){setPDesc(e.target.value)}} placeholder="Symptômes, codes d'erreur..."></textarea></div></div>
+          <div className="cd"><div className="st"><span className="sn">5</span> Priorité</div><div className="ug">{["Normale","Urgente","Critique"].map(function(u){return <button key={u} className={urgCls(u)} onClick={function(){setUrgLvl(u)}}>{u}</button>})}</div></div>
+          <button className="sbm" onClick={submitPanne}>Signaler la panne</button>
+        </div>}
+
+        {page==="suivi_demandes"&&
+          <SuiviPage isPanne={false} dems={dems} pans={pans} fSvc={fSvc} fSt={fSt} setFSvc={setFSvc} setFSt={setFSt} isBio={isBio} chgSt={function(id,ns){setDems(dems.map(function(d){return d.id===id?Object.assign({},d,{statut:ns}):d}))}} delItem={function(id){setDems(dems.filter(function(d){return d.id!==id}))}}/>
+        }
+
+        {page==="suivi_pannes"&&
+          <SuiviPage isPanne={true} dems={dems} pans={pans} fSvc={fSvc} fSt={fSt} setFSvc={setFSvc} setFSt={setFSt} isBio={isBio} chgSt={function(id,ns){setPans(pans.map(function(d){return d.id===id?Object.assign({},d,{statut:ns}):d}))}} delItem={function(id){setPans(pans.filter(function(d){return d.id!==id}))}}/>
+        }
+
+        {page==="reforme"&&<div>
+          <div className="ph"><span className="pb" style={{background:"#7c3aed20",color:"#a78bfa"}}>♻️ Demande de réforme</span><h2>Déclasser un équipement</h2><p>Sélectionnez l'équipement à réformer.</p></div>
+          {ok&&<div className="suc">✓ Demande de réforme soumise avec succès !</div>}
+          <div className="cd"><div className="st"><span className="sn">1</span> Service</div><div className="sg">{window.SVCS.filter(function(s){return s.dbKey}).map(function(s){var cnt=eqDb.filter(function(eq){return eq.s===s.dbKey}).length;return <div key={s.id} className={"sb"+(svc===s.id?" ac":"")} onClick={function(){setSvc(s.id);setRSelEq(null)}}><div className="si">{s.icon}</div><div className="sl">{s.label}</div><div className="sc">{cnt} éq.</div></div>})}</div></div>
+          <div className="cd"><div className="st"><span className="sn">2</span> Identification</div><div className="fg"><div className="fi"><label>Nom</label><input value={rNom} onChange={function(e){setRNom(e.target.value)}} placeholder="Dr. / M. / Mme ..."/></div><div className="fi"><label>Fonction</label><input value={rFunc} onChange={function(e){setRFunc(e.target.value)}} placeholder="Médecin, Infirmier, Technicien..."/></div></div></div>
+          <div className="cd"><div className="st"><span className="sn">3</span> Équipement à réformer</div><EqSearch selSvc={svc} db={eqDb} onPick={function(eq){setRSelEq(eq)}}/></div>
+          <div className="cd"><div className="st"><span className="sn">4</span> Motif de la réforme</div><div className="fi"><textarea style={{minHeight:"100px"}} value={rMotif} onChange={function(e){setRMotif(e.target.value)}} placeholder="Décrivez le motif : vétusté, obsolescence, irréparable, non conforme aux normes, coût de réparation trop élevé, remplacement prévu..."></textarea></div></div>
+          <button className="sbm" style={{background:"linear-gradient(135deg,#7c3aed,#6d28d9)"}} onClick={submitReforme}>Soumettre la demande de réforme</button>
+        </div>}
+
+        {page==="suivi_reformes"&&
+          <SuiviReforme refs={refs} fSvc={fSvc} fSt={fSt} setFSvc={setFSvc} setFSt={setFSt} isBio={isBio}
+            chgSt={function(id,ns){setRefs(refs.map(function(d){return d.id===id?Object.assign({},d,{statut:ns}):d}))}}
+            delItem={function(id){setRefs(refs.filter(function(d){return d.id!==id}))}} />
+        }
+
+        {page==="inventaire"&&isBio&&<div>
+          <div className="ph"><span className="pb pb-p">🗄️ Base de données</span><h2>Inventaire ({eqDb.length} équipements)</h2></div>
+          <div className="ab">
+            <button className="pr" onClick={function(){setEditEq({s:window.SKS[0],e:"",m:"",o:"",r:"",i:""});setModal("edit")}}>＋ Ajouter</button>
+            <button onClick={function(){
+              var wb=XLSX.utils.book_new();
+              var header=[["Centre Hospitalier Provincial de Tata — CHP Tata"],["Ministère de la Santé et de la Protection Sociale"],[""],["Inventaire des Équipements Biomédicaux"],["Date d'export: "+new Date().toISOString().slice(0,10),"","","Total: "+eqDb.length+" équipements"],[""]];
+              var cols=["Service","Équipement","Marque","Modèle","N° Série","N° Inventaire"];
+              var rows=eqDb.map(function(eq){return[eq.s,eq.e,eq.m,eq.o,eq.r,eq.i]});
+              var ws=XLSX.utils.aoa_to_sheet(header.concat([cols]).concat(rows));
+              ws["!merges"]=[{s:{r:0,c:0},e:{r:0,c:5}},{s:{r:1,c:0},e:{r:1,c:5}},{s:{r:3,c:0},e:{r:3,c:5}}];
+              ws["!cols"]=[{wch:24},{wch:40},{wch:20},{wch:22},{wch:22},{wch:20}];
+              XLSX.utils.book_append_sheet(wb,ws,"Inventaire");XLSX.writeFile(wb,"Inventaire_CHP_Tata_"+new Date().toISOString().slice(0,10)+".xlsx")
+            }}>📥 Excel</button>
+          </div>
+          <div className="cd">
+            <input className="sin" style={{paddingLeft:"14px",marginBottom:"12px"}} placeholder={"Rechercher dans "+eqDb.length+" équipements..."} value={eqFilter} onChange={function(e){setEqFilter(e.target.value)}}/>
+            <div style={{fontSize:"12px",color:"var(--text3)",marginBottom:"10px"}}>{filtEq.length} résultat(s)</div>
+            <div className="etw"><table className="etb"><thead><tr><th>Service</th><th>Équipement</th><th>Marque</th><th>Modèle</th><th>N° Série</th><th>N° Inv.</th><th>Actions</th></tr></thead><tbody>
+              {filtEq.map(function(eq){var ri=eqDb.indexOf(eq);return <tr key={ri+"_"+eq.i}>
+                <td><span className="svt">{eq.s}</span></td><td style={{fontWeight:600,color:"var(--text)"}}>{eq.e||"—"}</td><td>{eq.m||"—"}</td><td>{eq.o||"—"}</td>
+                <td style={{fontFamily:"monospace",fontSize:"11px"}}>{eq.r||"—"}</td><td style={{color:"var(--green)",fontWeight:700,fontSize:"12px"}}>{eq.i||"—"}</td>
+                <td><button style={{padding:"4px 10px",fontSize:"11px",border:"1px solid var(--border)",background:"var(--bg2)",color:"var(--text2)",borderRadius:"6px",cursor:"pointer",fontFamily:"inherit",marginRight:"4px"}} onClick={function(){setEditEq(Object.assign({},eq,{_idx:ri}));setModal("edit")}}>✏️</button><button style={{padding:"4px 10px",fontSize:"11px",border:"1px solid var(--border)",background:"var(--bg2)",color:"var(--text2)",borderRadius:"6px",cursor:"pointer",fontFamily:"inherit"}} onClick={function(){setEditEq(Object.assign({},eq,{_idx:ri}));setModal("delete")}}>🗑️</button></td>
+              </tr>})}
+            </tbody></table></div>
+          </div>
+        </div>}
+      </main>
+      <footer className="ft">© 2026 CHP Tata — Service Biomédical · {eqDb.length} éq. · {window.firebaseReady?"🟢 Firebase":"🟡 localStorage"} · {window.emailReady?"📧 Email actif":"📧 Email off"}</footer>
+
+      {modal==="edit"&&editEq&&<div className="mo" onClick={function(e){if(e.target===e.currentTarget)setModal(null)}}><div className="mb">
+        <h3>{editEq._idx!==undefined?"Modifier":"Ajouter"} un équipement</h3>
+        <div className="fg">
+          <div className="fi ff"><label>Service</label><select value={editEq.s} onChange={function(e){setEditEq(Object.assign({},editEq,{s:e.target.value}))}}>{window.SKS.map(function(s){return <option key={s} value={s}>{s}</option>})}</select></div>
+          <div className="fi"><label>Désignation</label><input value={editEq.e} onChange={function(e){setEditEq(Object.assign({},editEq,{e:e.target.value}))}}/></div>
+          <div className="fi"><label>Marque</label><input value={editEq.m} onChange={function(e){setEditEq(Object.assign({},editEq,{m:e.target.value}))}}/></div>
+          <div className="fi"><label>Modèle</label><input value={editEq.o} onChange={function(e){setEditEq(Object.assign({},editEq,{o:e.target.value}))}}/></div>
+          <div className="fi"><label>N° Série</label><input value={editEq.r} onChange={function(e){setEditEq(Object.assign({},editEq,{r:e.target.value}))}}/></div>
+          <div className="fi"><label>N° Inventaire</label><input value={editEq.i} onChange={function(e){setEditEq(Object.assign({},editEq,{i:e.target.value}))}}/></div>
+        </div>
+        <div className="ma"><button className="mc" onClick={function(){setModal(null)}}>Annuler</button>{editEq._idx!==undefined&&<button className="md" onClick={function(){setModal("delete")}}>Supprimer</button>}<button className="ms" onClick={saveEq}>Enregistrer</button></div>
+      </div></div>}
+
+      {modal==="delete"&&editEq&&<div className="mo" onClick={function(e){if(e.target===e.currentTarget)setModal(null)}}><div className="mb" style={{maxWidth:"420px"}}>
+        <h3>⚠️ Confirmer la suppression</h3>
+        <p style={{color:"var(--text2)",fontSize:"14px",margin:"12px 0"}}>Supprimer <strong style={{color:"var(--text)"}}>{editEq.e||editEq.i||"cet équipement"}</strong> ?</p>
+        <div className="ma"><button className="mc" onClick={function(){setModal(null)}}>Annuler</button><button className="md" onClick={function(){setEqDb(eqDb.filter(function(_,i){return i!==editEq._idx}));setModal(null);setEditEq(null)}}>Supprimer</button></div>
+      </div></div>}
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+</script>
+</body>
+</html>
